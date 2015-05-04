@@ -1,4 +1,7 @@
 class Blog < ActiveRecord::Base
+  belongs_to :student
+  delegate :cohort, to: :student
+  
   def feed_url
     Feedbag.find(url).first
   end

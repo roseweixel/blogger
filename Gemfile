@@ -64,3 +64,4 @@ gem 'bootstrap-sass', '~> 3.1.1'
 
 gem 'feedjira'
 gem 'feedbag'
+gem 'paperclip'
