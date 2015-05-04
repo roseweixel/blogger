@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  root 'blogs#index'
-
-  resources :blogs
+  root 'welcome#index'
 
   resources :cohorts do 
+    resources :blogs
     resources :students
   end
 end

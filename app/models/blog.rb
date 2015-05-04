@@ -1,6 +1,8 @@
 class Blog < ActiveRecord::Base
   belongs_to :student
   delegate :cohort, to: :student
+
+  validates :url, :presence => true, :uniqueness => true
   
   def feed_url
     Feedbag.find(url).first
@@ -10,7 +12,7 @@ class Blog < ActiveRecord::Base
     Feedjira::Feed.fetch_and_parse(feed_url)
   end
 
-  def most_recent_entry
+  def latest_entry
     feed.entries.first
   end
 end

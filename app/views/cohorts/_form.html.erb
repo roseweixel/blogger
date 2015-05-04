@@ -1,0 +1,17 @@
+<%= form_for @cohort, html: {class: "form-inline"} do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class:"form-control" %>
+  </div>
+  <br>
+  <br>
+  <div class="form-group">
+    <%= f.label :roster_csv %>
+    <%= f.file_field :roster_csv %>
+  </div>
+  <br>
+  <br>
+  <div class="form-group">
+    <%= f.submit class:"form-control" %>
+  </div>
+<% end %>

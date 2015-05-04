@@ -8,9 +8,15 @@ class BlogsController < ApplicationController
     redirect_to(:back)
   end
 
+  def destroy
+    @blog = Blog.find(params[:id])
+    @blog.destroy
+    redirect_to(:back)
+  end
+
   private
 
     def blog_params
-      params.require(:blog).permit(:url)
+      params.require(:blog).permit(:url, :student_id)
     end
 end

@@ -1,20 +1,8 @@
-<h1>Flatiron School Blogs</h1>
+<h1>All the Blogs</h1>
+
 <%= render 'form' %>
+
 <ul>
-<%= render @blogs %>
+  <%= render @blogs %>
 </ul>
 
-<h3>Create a New Cohort</h3>
-<%= form_for Cohort.new, class: "form-horizontal" do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="form-group">
-    <%= f.label :roster_csv %>
-    <%= f.file_field :roster_csv %>
-  </div>
-  <div class="form-group">
-    <%= f.submit %>
-  </div>
-<% end %>

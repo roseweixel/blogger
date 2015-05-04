@@ -20,7 +20,25 @@ class CohortsController < ApplicationController
     redirect_to(:back)
   end
 
+  def edit
+    @cohort = Cohort.find(params[:id])
+  end
 
+  def update
+    @cohort = Cohort.find(params[:id])
+    @cohort.update(cohort_params)
+    redirect_to(cohort_path(@cohort))
+  end
+
+  def show
+    @cohort = Cohort.includes(students: [:blogs]).find(params[:id])
+  end
+
+  def destroy
+    @cohort = Cohort.find(params[:id])
+    @cohort.destroy
+    redirect_to(:back)
+  end
 
   private
 

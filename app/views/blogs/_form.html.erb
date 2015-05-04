@@ -1,5 +1,9 @@
-<%= form_for Blog.new do |f| %>
+<%= form_for [cohort, cohort.blogs.new], :html => {:class => 'form-inline'} do |f| %>
+  <div class='form-group'>
+  <%= f.label :student, '<h4>Add a blog for: </h4>'.html_safe %>
+  <%= f.collection_select :student_id, cohort.students, :id, :github_username, {:prompt=>true}, {class: 'form-control'} %>
+  </div>
   <%= f.label :url, 'Blog url:' %>
-  <%= f.text_field :url %>
-  <%= f.submit %>
+  <%= f.text_field :url, class: 'form-control' %>
+  <%= f.submit class: 'form-control' %>
 <% end %>
