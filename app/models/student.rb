@@ -21,4 +21,10 @@ class Student < ActiveRecord::Base
     blog.latest_entry.title[0..30] + '...'
   end
 
+  def blog_entries_written_since_last_assignment_date
+    past_assignments = blog_assignments.where("due_date < ?", Date.today.to_date)
+    last_assignment = past_assignments.order('due_date DESC').first
+    entries = blog.entries_after_date(last_assignment.due_date)
+  end
+
 end
