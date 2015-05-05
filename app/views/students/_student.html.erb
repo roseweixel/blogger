@@ -7,13 +7,15 @@
   <% if student.blog %>
     <td><%= link_to student.blog.feed.title, student.blog.url %>
     <br>
-    <%= link_to 'delete blog', cohort_blog_path(student.cohort, student.blog), method: 'delete', class: 'btn btn-default btn-xs' %></td>
+    <%= link_to 'edit', edit_blog_path(student.blog), class: 'btn btn-default btn-xs' %>
+    <%= link_to 'delete', blog_path(student.blog), method: 'delete', class: 'btn btn-default btn-xs' %>
+    </td>
   <% else %>
     <td> - </td>
   <% end %>
 
   <% if student.blog && student.blog.feed.entries.any? %>
-    <td><%= link_to student.truncated_latest_entry_title, student.blog.latest_entry.url %></td>
+    <td><%= link_to student.truncated_latest_entry_title, student.blog.latest_entry.url, title: student.blog.latest_entry.title %></td>
     <td><%= student.blog.latest_entry.published.strftime("%m/%d/%Y") %></td>
   <% else %>
     <td> - </td>
@@ -21,7 +23,7 @@
   <% end %>
 
   <td>
-    <%= link_to 'delete', cohort_student_path(student.cohort, student), method: 'delete', class: 'btn btn-default btn-xs' %>
     <%= link_to 'edit', edit_cohort_student_path(student.cohort, student), class: 'btn btn-default btn-xs' %>
+    <%= link_to 'delete', cohort_student_path(student.cohort, student), method: 'delete', class: 'btn btn-default btn-xs' %>
   </td>
 </tr>

@@ -1,0 +1,30 @@
+<h2>Create a New Blogging Schedule for <%= @cohort.name %></h2>
+
+<br>
+
+<%= form_for [@cohort, @schedule] do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'Schedule Name' %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :blog_entries_per_student %>
+    <%= f.number_field :blog_entries_per_student %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit %>
+  </div>
+<% end %>
+

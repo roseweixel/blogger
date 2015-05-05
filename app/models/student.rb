@@ -9,7 +9,7 @@ class Student < ActiveRecord::Base
   end
 
   def truncated_latest_entry_title
-    blog.latest_entry.title[0..40] + '...'
+    blog.latest_entry.title[0..30] + '...'
   end
 
 end

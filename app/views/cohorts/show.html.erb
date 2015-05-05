@@ -1,10 +1,15 @@
-<h1><%= @cohort.name %></h1> 
-<%= link_to 'edit', edit_cohort_path(@cohort) %>
+<h1><%= @cohort.name %> <%= link_to 'create a schedule', new_cohort_schedule_path(@cohort), class: 'btn btn-large btn-primary' %></h1> 
+<%= link_to 'edit this cohort', edit_cohort_path(@cohort) %>
+
+<h4>Schedules:</h4>
+<% @cohort.schedules.each do |schedule| %>
+  <%= link_to schedule.name, cohort_schedule_path(@cohort, schedule) %>
+<% end %>
 
 <h4>Add A Student</h4>
 <%= render 'students/form', student: @cohort.students.new %>
 
-<%= render 'blogs/form', cohort: @cohort %>
+<%= render 'blogs/form', blog: Blog.new, cohort: @cohort %>
 
 <table class="table table-striped">
   <thead>
