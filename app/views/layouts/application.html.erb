@@ -18,7 +18,10 @@
 </div>
 
 <div class="container">
-<%= yield %>
+  <div id="messages">
+    <%= flash[:alert] %>
+  </div>
+  <%= yield %>
 </div>
 
 </body>
