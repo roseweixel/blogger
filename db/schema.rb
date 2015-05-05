@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505142329) do
+ActiveRecord::Schema.define(version: 20150505182709) do
 
   create_table "blogs", force: :cascade do |t|
     t.string   "url"
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 20150505142329) do
   create_table "schedules", force: :cascade do |t|
     t.date     "start_date"
     t.date     "end_date"
-    t.integer  "blog_entries_per_student"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "frequency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "name"
     t.integer  "cohort_id"
   end
