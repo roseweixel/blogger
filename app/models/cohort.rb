@@ -4,6 +4,7 @@ require 'open-uri'
 class Cohort < ActiveRecord::Base
   has_many :students, dependent: :destroy
   has_many :blogs, through: :students
+  has_many :schedules
   
   has_attached_file :roster_csv
   validates_attachment_file_name :roster_csv, :matches => [/csv\Z/]

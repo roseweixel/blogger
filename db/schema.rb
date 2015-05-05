@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504190206) do
+ActiveRecord::Schema.define(version: 20150505132339) do
 
   create_table "blogs", force: :cascade do |t|
     t.string   "url"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20150504190206) do
     t.datetime "roster_csv_updated_at"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "blog_entries_per_student"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "students", force: :cascade do |t|
