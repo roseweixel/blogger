@@ -18,3 +18,12 @@
 <p>
 Students should blog once every <%= @schedule.frequency %> days.
 </p>
+
+<%= button_to 'Generate Blog Rotation', generate_blog_rotation_path(id: @schedule.id) %>
+
+<% @schedule.weekdays_that_arent_holidays.each do |day| %>
+  <h3><%= day.strftime("%A, %m/%d") %></h3>
+  <% @schedule.blog_assignments.where(due_date: day).each do |blog_assignment| %>
+    <p><%= blog_assignment.student.full_name_or_github_name %><p>
+  <% end %>
+<% end %>

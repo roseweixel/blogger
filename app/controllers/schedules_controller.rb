@@ -12,6 +12,15 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
     @schedule.cohort_id = (params[:cohort_id])
     @schedule.save
+    
+    redirect_to cohort_schedule_path(@schedule.cohort, @schedule)
+  end
+
+  def generate_blog_rotation
+    @schedule = Schedule.find(params[:id])
+    @schedule.cohort.blog_assignments.all.destroy_all
+    @schedule.generate_blog_assignments
+    
     redirect_to cohort_schedule_path(@schedule.cohort, @schedule)
   end
 

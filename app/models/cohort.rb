@@ -4,6 +4,7 @@ require 'open-uri'
 class Cohort < ActiveRecord::Base
   has_many :students, dependent: :destroy
   has_many :blogs, through: :students
+  has_many :blog_assignments, through: :students
   has_many :schedules
   
   has_attached_file :roster_csv
