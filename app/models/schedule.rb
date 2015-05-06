@@ -20,14 +20,14 @@ class Schedule < ActiveRecord::Base
   # guarantees specified frequency will be adhered to, side effect is sometimes days get skipped or have inconsistent number of students per day
   def generate_blog_assignments
     shuffled = cohort.students.shuffle
-    current_day = weekdays_that_arent_holidays.first
+    current_day_index = 0
     max_day = weekdays_that_arent_holidays.last
     shuffled.each_with_index do |student, index|
       if index != 0 && index % students_per_day == 0
-        current_day += 1
+        current_day_index += 1
       end
       # this results in weekend assignments
-      student.assign_blogs(current_day, max_day, frequency, weekdays_that_arent_holidays)
+      student.assign_blogs(weekdays_that_arent_holidays[current_day_index], max_day, frequency, weekdays_that_arent_holidays)
     end
   end
 

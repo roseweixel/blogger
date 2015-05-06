@@ -17,17 +17,21 @@ class Student < ActiveRecord::Base
     blogs.first
   end
 
+  def next_valid_day(previous_day, days_array, frequency)
+    index = days_array.index(previous_day)
+    new_index = (index + frequency)
+    days_array[new_index]
+  end
+
   def assign_blogs(first_day, max_day, frequency, valid_days)
     due_date = first_day
-    until due_date > max_day
-      # if !valid_days.include?(due_date)
-      #   due_date += 1 
-      # else
-        BlogAssignment.create(due_date: due_date, student_id: id)
-        due_date += frequency
-      # end
+    date_index = valid_days.index(due_date)
+    until valid_days[date_index] == nil
+      BlogAssignment.create(due_date: valid_days[date_index], student_id: id)
+      date_index += frequency
     end
   end
+
 
   def truncated_latest_entry_title
     blog.latest_entry.title[0..30] + '...'
