@@ -17,11 +17,15 @@ class Student < ActiveRecord::Base
     blogs.first
   end
 
-  def assign_blogs(first_day, max_day, frequency)
+  def assign_blogs(first_day, max_day, frequency, valid_days)
     due_date = first_day
     until due_date > max_day
-      BlogAssignment.create(due_date: due_date, student_id: id)
-      due_date += frequency
+      # if !valid_days.include?(due_date)
+      #   due_date += 1 
+      # else
+        BlogAssignment.create(due_date: due_date, student_id: id)
+        due_date += frequency
+      # end
     end
   end
 

@@ -30,8 +30,15 @@ class SchedulesController < ApplicationController
   def generate_blog_rotation
     @schedule = Schedule.find(params[:id])
     @schedule.cohort.blog_assignments.all.destroy_all
-    @schedule.generate_blog_assignments
+    @priority = params[:priority]
+
+    if @priority == "adhere to specified frequency"
+      @schedule.generate_blog_assignments
+    else
+      @schedule.generate_blog_assignments_based_on_students_per_day
+    end
     
+    flash[:priority] = @priority
     redirect_to cohort_schedule_path(@schedule.cohort, @schedule)
   end
 
