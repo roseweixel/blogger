@@ -26,7 +26,6 @@ class Schedule < ActiveRecord::Base
       if index != 0 && index % students_per_day == 0
         current_day_index += 1
       end
-      # this results in weekend assignments
       student.assign_blogs(weekdays_that_arent_holidays[current_day_index], max_day, frequency, weekdays_that_arent_holidays)
     end
   end
