@@ -17,6 +17,14 @@ class Student < ActiveRecord::Base
     blogs.first
   end
 
+  def assign_blogs(first_day, max_day, frequency)
+    due_date = first_day
+    until due_date > max_day
+      BlogAssignment.create(due_date: due_date, student_id: id)
+      due_date += frequency
+    end
+  end
+
   def truncated_latest_entry_title
     blog.latest_entry.title[0..30] + '...'
   end
