@@ -1,6 +1,8 @@
 class Schedule < ActiveRecord::Base
   belongs_to :cohort
-  has_many :blog_assignments, through: :cohort
+  has_many :blog_assignments
+
+  accepts_nested_attributes_for :blog_assignments
   
   HOLIDAYS = ['25/05/2015', '04/07/2015'].map { |date| Date.parse(date) }
   WEEKENDS = ['Saturday', 'Sunday']
@@ -11,7 +13,7 @@ class Schedule < ActiveRecord::Base
     counter = 0
     weekdays_that_arent_holidays.each do |day|
       students_per_day.times do
-        BlogAssignment.create(student_id: shuffled[counter].id, due_date: day)
+        blog_assignments.create(student_id: shuffled[counter].id, due_date: day)
         counter < (shuffled.length - 1) ? counter += 1 : counter = 0
       end
     end
@@ -26,7 +28,7 @@ class Schedule < ActiveRecord::Base
       if index != 0 && index % students_per_day == 0
         current_day_index += 1
       end
-      student.assign_blogs(weekdays_that_arent_holidays[current_day_index], max_day, frequency, weekdays_that_arent_holidays)
+      student.assign_blogs(schedule, current_day_index)
     end
   end
 

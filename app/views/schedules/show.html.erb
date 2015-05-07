@@ -25,6 +25,7 @@ Students should blog once every <%= @schedule.frequency %> days.
   <div class="form-group">
     <%= select_tag "priority", options_for_select(["select a priority", "consistent number of blogs per day", "adhere to specified frequency"], selected: flash[:priority] || "select a priority"), class: 'form-control' %>
     <%= submit_tag 'Generate Blog Rotation', class: 'btn btn-large btn-primary' %>
+    <%= link_to 'Enter A Blogging Rotation Manually', new_cohort_schedule_blog_assignment_path(@schedule.cohort, @schedule), class: 'btn btn-large btn-primary' %>
   </div>
 <% end %>
 
@@ -32,8 +33,8 @@ Students should blog once every <%= @schedule.frequency %> days.
   <h3><%= day.strftime("%A, %m/%d") %></h3>
   <% @schedule.blog_assignments.where(due_date: day).each do |blog_assignment| %>
     <p>
-      <%= blog_assignment.student.full_name_or_github_name %>
-      <%= blog_assignment.student.blog_entries_written_since_previous_assignment(blog_assignment.due_date).collect{|entry| "#{entry.title} - #{entry.published.strftime("%m/%d/%Y")}"} %>
+      <strong><%= blog_assignment.student.full_name_or_github_name %>:</strong>
+      <%= blog_assignment.student.blog_entries_written_since_previous_assignment(blog_assignment.due_date).collect {|entry| (link_to entry.title, entry.url) + " (#{entry.published.strftime("%m/%d/%Y")})" }.to_sentence.html_safe %>
     <p>
   <% end %>
 <% end %>

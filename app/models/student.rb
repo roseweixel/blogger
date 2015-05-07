@@ -23,12 +23,13 @@ class Student < ActiveRecord::Base
     days_array[new_index]
   end
 
-  def assign_blogs(first_day, max_day, frequency, valid_days)
-    due_date = first_day
+  def assign_blogs(schedule, current_day_index)
+    valid_days = schedule.weekdays_that_arent_holidays
+    due_date = valid_days[current_day_index]
     date_index = valid_days.index(due_date)
     until valid_days[date_index] == nil
-      BlogAssignment.create(due_date: valid_days[date_index], student_id: id)
-      date_index += frequency
+      schedule.blog_assignments.create(due_date: valid_days[date_index], student_id: id)
+      date_index += schedule.frequency
     end
   end
 
