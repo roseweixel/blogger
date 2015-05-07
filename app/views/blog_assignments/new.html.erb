@@ -1,12 +1,14 @@
 <h1>Create Your Blog Rotation Manually</h1>
 
 <%= form_for [@schedule.cohort, @schedule] do |f| %>
-  <%= f.fields_for :blog_assignments do |blog_assignments_form| %>
-    <% @schedule.weekdays_that_arent_holidays.each do |day| %>
-      <h4><%= blog_assignments_form.label :due_date, day.strftime("%m/%d/%Y") %></h4>
-      <% 5.times do %>
-        <%= blog_assignments_form.collection_select :student_id, @schedule.cohort.students, :id, :full_name_or_github_name, prompt: true %><br>
-      <% end %>
+  <% @schedule.weekdays_that_arent_holidays.each do |day| %>
+    <%= f.fields_for :blog_assignments, @schedule.blog_assignments.build do |blog_assignments_form| %>
+      <div class="form-group">
+        <h4><%= blog_assignments_form.label :due_date, day.strftime("%m/%d/%Y") %></h4>
+        <% 5.times do %>
+          <%= blog_assignments_form.collection_select :student_id, @schedule.cohort.students, :id, :full_name_or_github_name, prompt: true %><br>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
   <%= f.submit 'Create Blog Rotation' %>
