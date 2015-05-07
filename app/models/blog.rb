@@ -32,19 +32,23 @@ class Blog < ActiveRecord::Base
     feed.entries.first
   end
 
+  def latest_post
+    posts.order('published_date DESC').first
+  end
+
   def entries
     feed.entries
   end
 
-  def entries_for_range(start_date, end_date)
-    entries.select { |entry| entry.published > start_date && entry.published <= end_date }
+  def posts_for_range(start_date, end_date)
+    posts.select { |post| post.published_date > start_date && post.published_date <= end_date }
   end
 
-  def entries_after_date(date)
-    entries.select { |entry| entry.published > date }
+  def posts_after_date(date)
+    posts.select { |post| post.published_date > date }
   end
 
-  def entries_on_or_before_date(date)
-    entries.select { |entry| entry.published <= date }
+  def posts_on_or_before_date(date)
+    posts.select { |post| post.published_date <= date }
   end
 end

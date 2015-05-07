@@ -34,7 +34,7 @@ Students should blog once every <%= @schedule.frequency %> days.
   <% @schedule.blog_assignments.where(due_date: day).each do |blog_assignment| %>
     <p>
       <strong><%= blog_assignment.student.full_name_or_github_name %>:</strong>
-      <%= blog_assignment.student.blog_entries_written_since_previous_assignment(blog_assignment.due_date).collect {|entry| (link_to entry.title, entry.url) + " (#{entry.published.strftime("%m/%d/%Y")})" }.to_sentence.html_safe %>
+      <%= blog_assignment.student.blog_entries_written_since_previous_assignment(blog_assignment.due_date).collect {|entry| (link_to entry.title, entry.url) + " (#{entry.published_date.strftime("%m/%d/%Y")})" }.to_sentence.html_safe %>
     <p>
   <% end %>
 <% end %>

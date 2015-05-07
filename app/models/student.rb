@@ -35,13 +35,13 @@ class Student < ActiveRecord::Base
 
 
   def truncated_latest_entry_title
-    blog.latest_entry.title[0..30] + '...'
+    blog.latest_post.title[0..30] + '...'
   end
 
   def blog_entries_written_since_last_assignment_date
     past_assignments = blog_assignments.where("due_date < ?", Date.today.to_date)
     last_assignment = past_assignments.order('due_date DESC').first
-    entries = blog.entries_after_date(last_assignment.due_date)
+    entries = blog.posts_after_date(last_assignment.due_date)
   end
 
   def blog_entries_written_since_previous_assignment(date)
@@ -49,9 +49,9 @@ class Student < ActiveRecord::Base
       past_assignments = blog_assignments.where("due_date < ?", date)
       last_assignment = past_assignments.order('due_date DESC').first
       if last_assignment
-        entries = blog.entries_for_range(last_assignment.due_date, date)
+        entries = blog.posts_for_range(last_assignment.due_date, date)
       else
-        entries = blog.entries_on_or_before_date(date)
+        entries = blog.posts_on_or_before_date(date)
       end
     else
       []

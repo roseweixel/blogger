@@ -15,8 +15,8 @@
   <% end %>
 
   <% if student.blog && student.blog.feed.entries.any? %>
-    <td><%= link_to student.truncated_latest_entry_title, student.blog.latest_entry.url, title: student.blog.latest_entry.title %></td>
-    <td><%= student.blog.latest_entry.published.strftime("%m/%d/%Y") %></td>
+    <td><%= link_to student.truncated_latest_entry_title, student.blog.latest_post.url, title: student.blog.latest_post.title %></td>
+    <td><%= student.blog.latest_post.published_date.strftime("%m/%d/%Y") %></td>
   <% else %>
     <td> - </td>
     <td> - </td>
