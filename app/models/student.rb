@@ -43,4 +43,18 @@ class Student < ActiveRecord::Base
     entries = blog.entries_after_date(last_assignment.due_date)
   end
 
+  def blog_entries_written_since_previous_assignment(date)
+    if blog
+      past_assignments = blog_assignments.where("due_date < ?", date)
+      last_assignment = past_assignments.order('due_date DESC').first
+      if last_assignment
+        entries = blog.entries_for_range(last_assignment.due_date, date)
+      else
+        entries = blog.entries_on_or_before_date(date)
+      end
+    else
+      []
+    end
+  end
+
 end

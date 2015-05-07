@@ -21,10 +21,14 @@ class Blog < ActiveRecord::Base
   end
 
   def entries_for_range(start_date, end_date)
-    entries.select { |entry| entry.published > start_date && entry.published < end_date }
+    entries.select { |entry| entry.published > start_date && entry.published <= end_date }
   end
 
   def entries_after_date(date)
     entries.select { |entry| entry.published > date }
+  end
+
+  def entries_on_or_before_date(date)
+    entries.select { |entry| entry.published <= date }
   end
 end

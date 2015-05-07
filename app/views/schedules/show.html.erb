@@ -1,5 +1,5 @@
 <h1><%= @schedule.name %></h1>
-<%= link_to 'edit', edit_cohort_schedule_path(@schedule.cohort, @schedule) %>
+<%= link_to 'back to cohort page', cohort_path(@schedule.cohort), class: "btn btn-default" %> <%= link_to 'edit this schedule', edit_cohort_schedule_path(@schedule.cohort, @schedule), class: "btn btn-default" %>
 <br>
 <br>
 <p>
@@ -21,14 +21,19 @@
 Students should blog once every <%= @schedule.frequency %> days.
 </p>
 
-<%= form_tag(generate_blog_rotation_path(id: @schedule.id), {method: :post}) do %>
-  <%= select_tag "priority", options_for_select(["select a priority", "consistent number of blogs per day", "adhere to specified frequency"], selected: flash[:priority] || "select a priority") %>
-  <%= submit_tag 'Generate Blog Rotation', class: 'btn btn-large btn-primary' %>
+<%= form_tag(generate_blog_rotation_path(id: @schedule.id), {method: :post, class: 'form-inline'}) do %>
+  <div class="form-group">
+    <%= select_tag "priority", options_for_select(["select a priority", "consistent number of blogs per day", "adhere to specified frequency"], selected: flash[:priority] || "select a priority"), class: 'form-control' %>
+    <%= submit_tag 'Generate Blog Rotation', class: 'btn btn-large btn-primary' %>
+  </div>
 <% end %>
 
 <% @schedule.weekdays_that_arent_holidays.each do |day| %>
   <h3><%= day.strftime("%A, %m/%d") %></h3>
   <% @schedule.blog_assignments.where(due_date: day).each do |blog_assignment| %>
-    <p><%= blog_assignment.student.full_name_or_github_name %><p>
+    <p>
+      <%= blog_assignment.student.full_name_or_github_name %>
+      <%= blog_assignment.student.blog_entries_written_since_previous_assignment(blog_assignment.due_date).collect{|entry| "#{entry.title} - #{entry.published.strftime("%m/%d/%Y")}"} %>
+    <p>
   <% end %>
 <% end %>
