@@ -25,7 +25,6 @@ Students should blog once every <%= @schedule.frequency %> days.
   <div class="form-group">
     <%= select_tag "priority", options_for_select(["select a priority", "consistent number of blogs per day", "adhere to specified frequency"], selected: flash[:priority] || "select a priority"), class: 'form-control' %>
     <%= submit_tag 'Generate Blog Rotation', class: 'btn btn-large btn-primary' %>
-    <%= link_to 'Enter A Blogging Rotation Manually', new_cohort_schedule_blog_assignment_path(@schedule.cohort, @schedule), class: 'btn btn-large btn-primary' %>
   </div>
 <% end %>
 

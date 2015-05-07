@@ -28,7 +28,7 @@ class Schedule < ActiveRecord::Base
       if index != 0 && index % students_per_day == 0
         current_day_index += 1
       end
-      student.assign_blogs(schedule, current_day_index)
+      student.assign_blogs(self, current_day_index)
     end
   end
 
