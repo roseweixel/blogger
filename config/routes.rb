@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :cohorts do 
     resources :students
     resources :schedules
-    end
   end
 
   post 'generate_blog_rotation' => 'schedules#generate_blog_rotation'
