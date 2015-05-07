@@ -5,8 +5,7 @@ Rails.application.routes.draw do
 
   resources :cohorts do 
     resources :students
-    resources :schedules do
-      resources :blog_assignments
+    resources :schedules
     end
   end
 
