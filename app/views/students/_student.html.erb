@@ -5,7 +5,7 @@
   <td><%= student.github_username %></td>
 
   <% if student.blog %>
-    <td><%= link_to student.blog.feed.title, student.blog.url %>
+    <td><%= link_to student.blog.title, student.blog.url %>
     <br>
     <%= link_to 'edit', edit_blog_path(student.blog), class: 'btn btn-default btn-xs' %>
     <%= link_to 'delete', blog_path(student.blog), method: 'delete', class: 'btn btn-default btn-xs' %>
@@ -14,8 +14,8 @@
     <td> - </td>
   <% end %>
 
-  <% if student.blog && student.blog.feed.entries.any? %>
-    <td><%= link_to student.truncated_latest_entry_title, student.blog.latest_post.url, title: student.blog.latest_post.title %></td>
+  <% if student.blog && student.blog.posts.any? %>
+    <td><%= link_to truncate(student.blog.latest_post.title, length: 30), student.blog.latest_post.url, title: student.blog.latest_post.title %></td>
     <td><%= student.blog.latest_post.published_date.strftime("%m/%d/%Y") %></td>
   <% else %>
     <td> - </td>

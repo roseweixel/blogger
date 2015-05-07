@@ -5,6 +5,12 @@ class Blog < ActiveRecord::Base
 
   validates :url, :presence => true, :uniqueness => true
 
+  # after_create :set_title
+
+  def set_title
+    self.update(title: feed.title)
+  end
+
   def create_entries
     entries.each do |entry|
       posts.create.tap do |p|
@@ -21,10 +27,6 @@ class Blog < ActiveRecord::Base
   end
 
   def feed
-    #binding.pry
-    if self.id == 1
-      # binding.pry
-    end
     Feedjira::Feed.fetch_and_parse(feed_url)
   end
 
