@@ -1,5 +1,7 @@
 <h1><%= @schedule.name %></h1>
-<%= link_to 'back to cohort page', cohort_path(@schedule.cohort), class: "btn btn-default" %> <%= link_to 'edit this schedule', edit_cohort_schedule_path(@schedule.cohort, @schedule), class: "btn btn-default" %>
+<%= link_to 'back to cohort page', cohort_path(@schedule.cohort), class: "btn btn-default" %> 
+<%= link_to 'edit this schedule', edit_cohort_schedule_path(@schedule.cohort, @schedule), class: "btn btn-default" %>
+<%= link_to 'get new posts', get_new_posts_path(cohort_id: @schedule.cohort.id), class: 'btn btn-large btn-primary', method: 'post' %>
 <br>
 <br>
 <p>
@@ -9,12 +11,12 @@
 
 <p>
 <strong>Start Date: </strong>
-<%= @schedule.start_date %>
+<%= @schedule.start_date.strftime("%m/%d/%Y") %>
 </p>
 
 <p>
 <strong>End Date: </strong>
-<%= @schedule.end_date %>
+<%= @schedule.end_date.strftime("%m/%d/%Y") %>
 </p>
 
 <p>
@@ -32,8 +34,13 @@ Students should blog once every <%= @schedule.frequency %> days.
   <h3><%= day.strftime("%A, %m/%d") %></h3>
   <% @schedule.blog_assignments.where(due_date: day).each do |blog_assignment| %>
     <p>
-      <strong><%= blog_assignment.student.full_name_or_github_name %>:</strong>
-      <%= blog_assignment.student.blog_entries_written_since_previous_assignment(blog_assignment.due_date).collect {|entry| (link_to entry.title, entry.url) + " (#{entry.published_date.strftime("%m/%d/%Y")})" }.to_sentence.html_safe %>
+      <% posts_since_previous = blog_assignment.student.blog_entries_written_since_previous_assignment(blog_assignment.due_date) %>
+
+      <strong>
+      <%= render 'greenlight', posts_since_previous: posts_since_previous, day: day %> 
+      <%= blog_assignment.student.full_name_or_github_name %>:</strong>
+
+      <%= posts_since_previous.collect {|entry| (link_to entry.title, entry.url) + " (#{entry.published_date.strftime("%m/%d/%Y")})" }.to_sentence.html_safe %>
     <p>
   <% end %>
 <% end %>

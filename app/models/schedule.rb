@@ -1,6 +1,6 @@
 class Schedule < ActiveRecord::Base
   belongs_to :cohort
-  has_many :blog_assignments
+  has_many :blog_assignments, dependent: :destroy
 
   accepts_nested_attributes_for :blog_assignments
   
@@ -33,11 +33,15 @@ class Schedule < ActiveRecord::Base
   end
 
   def posts_per_student
-    days.count/frequency
+    weekdays_that_arent_holidays.count / frequency
   end
 
   def students_per_day
     (posts_per_student * cohort.students.count) / weekdays_that_arent_holidays.count
+  end
+
+  def leftover_posts
+    (posts_per_student * cohort.students.count) % weekdays_that_arent_holidays.count
   end
 
   def days

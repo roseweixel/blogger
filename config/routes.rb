@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   end
 
   post 'generate_blog_rotation' => 'schedules#generate_blog_rotation'
+
+  post 'get_new_posts' => 'cohorts#get_new_posts'
 end

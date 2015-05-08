@@ -5,7 +5,7 @@ class Blog < ActiveRecord::Base
 
   validates :url, :presence => true, :uniqueness => true
 
-  # after_create :set_title
+  after_create :set_title, :create_entries
 
   def set_title
     self.update(title: feed.title)

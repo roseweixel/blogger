@@ -1,6 +1,7 @@
 require 'csv'
 
 class CohortsController < ApplicationController
+
   def create
     @cohort = Cohort.create(cohort_params)
     if @cohort.persisted? && @cohort.roster_csv
@@ -28,6 +29,14 @@ class CohortsController < ApplicationController
   def destroy
     @cohort = Cohort.find(params[:id])
     @cohort.destroy
+    redirect_to(:back)
+  end
+
+  def get_new_posts
+    @cohort = Cohort.find(params[:cohort_id])
+    @cohort.blogs.each do |blog|
+      blog.create_entries
+    end
     redirect_to(:back)
   end
 
