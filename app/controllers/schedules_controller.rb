@@ -13,6 +13,10 @@ class SchedulesController < ApplicationController
     @schedule.cohort_id = (params[:cohort_id])
     @schedule.save
     
+    # @schedule.students.each do |student|
+    #   StudentMailer.initial_schedule_notification(@schedule, student).deliver_now
+    # end
+
     redirect_to cohort_schedule_path(@schedule.cohort, @schedule)
   end
 
@@ -46,6 +50,18 @@ class SchedulesController < ApplicationController
     
     flash[:priority] = @priority
     redirect_to cohort_schedule_path(@schedule.cohort, @schedule)
+  end
+
+  def set_blog_rotation
+    @schedule = Schedule.find(params[:id])
+    @schedule.toggle!(:rotation_locked)
+    redirect_to(:back)
+
+    # if @schedule.rotation_locked
+    #   @schedule.students.each do |student|
+    #     StudentMailer.initial_schedule_notification(@schedule, student).deliver_now
+    #   end
+    # end
   end
 
   private

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h4>Hi, <%= @student.full_name_or_github_name %>! Here are your assigned blog due dates for <%= @schedule.name %>.</h4>
+
+    <ul>
+      <% @blog_assignments.each do |assignment| %>
+        <li><%= assignment.due_date.strftime("%A, %m/%d") %></li>
+      <% end %>
+    </ul>
+    <br>
+    Happy Blogging!
+    <br>
+    <br>
+    // &lt;3,
+    <br>
+    <br>
+    Your Flatiron School Instructors
+  </body>
+</html>
+

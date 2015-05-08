@@ -18,7 +18,7 @@ class Cohort < ActiveRecord::Base
         @student_attributes_array = row
       else
         student = students.new.tap do |s|
-          @student_attributes_array.each_with_index do |attribute, index|
+          @student_attributes_array.compact.each_with_index do |attribute, index|
             s.send(attribute + '=', row[index])
           end
         end

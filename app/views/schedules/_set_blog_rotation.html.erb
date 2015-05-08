@@ -1,0 +1,5 @@
+<% if @schedule.rotation_locked %>
+  <%= link_to 'Unlock Blog Rotation', set_blog_rotation_path(id: @schedule.id), method: 'post', class: 'btn btn-large btn-success', rotation_locked: @schedule.rotation_locked %>
+<% else %>
+  <%= link_to 'Lock Blog Rotation', set_blog_rotation_path(id: @schedule.id), method: 'post', class: 'btn btn-large btn-danger', rotation_locked: @schedule.rotation_locked %>
+<% end %>

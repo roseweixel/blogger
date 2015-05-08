@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507204932) do
+ActiveRecord::Schema.define(version: 20150508200759) do
 
   create_table "blog_assignments", force: :cascade do |t|
     t.integer  "student_id"
@@ -52,10 +52,11 @@ ActiveRecord::Schema.define(version: 20150507204932) do
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "frequency"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "name"
     t.integer  "cohort_id"
+    t.boolean  "rotation_locked", default: false
   end
 
   create_table "students", force: :cascade do |t|

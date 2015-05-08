@@ -3,7 +3,7 @@
     <h2>
       Create a New Blogging Schedule for <%= @cohort.name %> 
       <%= f.submit class: "btn btn-primary" %>
-      <%= link_to 'Back', cohort_schedule_path(@cohort, @schedule), class: "btn btn-default" %>
+      <%= link_to 'Back', :back, class: 'btn btn-default' %>
     </h2>
     <br>
     <%= f.label :name, 'Schedule Name' %>
@@ -25,6 +25,7 @@
     each student should blog once every <%= f.number_field :frequency %> days
   </div>
 
+  <% if @schedule.persisted? %>
   <% @schedule.weekdays_that_arent_holidays.each do |day| %>
   
   <h3><%= day.strftime("%A, %m/%d") %></h3>
@@ -39,6 +40,7 @@
       <% end %>
     <% end %>
     </div>
+  <% end %>
   <% end %>
 <% end %>
 

@@ -1,6 +1,7 @@
 class Schedule < ActiveRecord::Base
   belongs_to :cohort
   has_many :blog_assignments, dependent: :destroy
+  has_many :students, through: :cohort
 
   accepts_nested_attributes_for :blog_assignments
   
