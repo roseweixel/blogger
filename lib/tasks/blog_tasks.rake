@@ -10,4 +10,10 @@ namespace :blogs do
       blog.set_title
     end
   end
+
+  task :send_reminder_emails => :environment do
+    BlogAssignment.due_tomorrow.each do |blog_assignment|
+      StudentMailer.reminder_email(blog_assignment).deliver_now
+    end
+  end
 end
