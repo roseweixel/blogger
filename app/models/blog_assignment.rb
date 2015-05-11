@@ -7,11 +7,11 @@ class BlogAssignment < ActiveRecord::Base
   end
 
   def completed?
-    student.blog_entries_written_since_previous_assignment(due_date).any?
+    student.blog_posts_written_since_previous_assignment(due_date).any?
   end
 
   def posts_since_previous
-    student.blog_entries_written_since_previous_assignment(due_date)
+    student.blog_posts_written_since_previous_assignment(due_date)
   end
 
   def most_recent_post_since_previous

@@ -1,6 +1,7 @@
 class Student < ActiveRecord::Base
   belongs_to :cohort
   has_many :blogs, dependent: :destroy
+  has_many :posts, through: :blogs
   has_many :blog_assignments, dependent: :destroy
   has_many :schedules, through: :cohort
   
@@ -50,24 +51,20 @@ class Student < ActiveRecord::Base
     end
   end
 
-  def truncated_latest_entry_title
-    blog.latest_post.title[0..30] + '...'
-  end
-
-  def blog_entries_written_since_last_assignment_date
+  def blog_posts_written_since_last_assignment_date
     past_assignments = blog_assignments.where("due_date < ?", Date.today.to_date)
     last_assignment = past_assignments.order('due_date DESC').first
     entries = blog.posts_after_date(last_assignment.due_date)
   end
 
-  def blog_entries_written_since_previous_assignment(date)
+  def blog_posts_written_since_previous_assignment(date)
     if blog
       past_assignments = blog_assignments.where("due_date < ?", date)
       last_assignment = past_assignments.order('due_date DESC').first
       if last_assignment
-        entries = blog.posts_for_range(last_assignment.due_date, date)
+        blog.posts_for_range(last_assignment.due_date, date)
       else
-        entries = blog.posts_on_or_before_date(date)
+        blog.posts_on_or_before_date(date)
       end
     else
       []
