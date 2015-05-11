@@ -67,5 +67,4 @@ gem 'feedbag'
 gem 'paperclip'
 gem 'font-awesome-rails'
 gem 'figaro'
-gem 'delayed_job_active_record'
 gem 'whenever', :require => false

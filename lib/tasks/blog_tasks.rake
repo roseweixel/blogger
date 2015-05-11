@@ -13,7 +13,7 @@ namespace :blogs do
 
   task :send_reminder_emails => :environment do
     BlogAssignment.due_tomorrow.each do |blog_assignment|
-      StudentMailer.reminder_email(blog_assignment).deliver_now
+      StudentMailer.reminder_email(blog_assignment).deliver_later
     end
   end
 end
