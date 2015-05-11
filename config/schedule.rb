@@ -18,6 +18,9 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+set :environment, "development"
+
 every 1.day, :at => '12:00 am' do
   rake "blogs:create_entries"
   rake "blogs:send_reminder_emails"

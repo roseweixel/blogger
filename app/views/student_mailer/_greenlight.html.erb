@@ -1,9 +1,0 @@
-<% if day <= Date.today %>
-  <% if posts_since_previous.any? %>
-    <%= image_tag attachments[0].url %>
-  <% else %>
-    <%= image_tag attachments[1].url %>
-  <% end %>
-<% else %>
-  <%= image_tag attachments[2].url %>
-<% end %>

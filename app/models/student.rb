@@ -13,6 +13,10 @@ class Student < ActiveRecord::Base
     end
   end
 
+  def first_name_or_github_name
+    first_name || github_username
+  end
+
   def blog
     blogs.first
   end
@@ -32,7 +36,6 @@ class Student < ActiveRecord::Base
       date_index += schedule.frequency
     end
   end
-
 
   def truncated_latest_entry_title
     blog.latest_post.title[0..30] + '...'
@@ -56,6 +59,10 @@ class Student < ActiveRecord::Base
     else
       []
     end
+  end
+
+  def remaining_blog_assignments
+    blog_assignments.where("due_date > #{Date.today}")
   end
 
 end
