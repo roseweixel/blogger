@@ -68,3 +68,5 @@ gem 'paperclip'
 gem 'font-awesome-rails'
 gem 'figaro'
 gem 'whenever', :require => false
+gem 'omniauth'
+gem 'omniauth-github'

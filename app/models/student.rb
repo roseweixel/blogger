@@ -7,6 +7,17 @@ class Student < ActiveRecord::Base
   
   validates :github_username, :presence => true, :uniqueness => true
 
+  def self.find_or_create_from_auth_hash(auth)
+    where(github_username: auth.info.nickname).first_or_initialize.tap do |user|
+      user.github_username = auth.info.nickname
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.email = auth.info.email
+      user.image = auth.info.image
+      user.save
+    end
+  end
+
   def full_name_or_github_name
     if first_name && last_name
       first_name + " " + last_name

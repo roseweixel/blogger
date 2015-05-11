@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511181701) do
+ActiveRecord::Schema.define(version: 20150511222639) do
 
   create_table "blog_assignments", force: :cascade do |t|
     t.integer  "student_id"
@@ -67,6 +67,9 @@ ActiveRecord::Schema.define(version: 20150511181701) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
   end
 
 end

@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree ../../../vendor/assets/stylesheets/.
+ *= require "flatly.css"
  *= require_tree .
  *= require_self
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
@@ -19,7 +20,7 @@
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
  */
 @import "font-awesome";
-@import "bootstrap";
+// @import "bootstrap";
 /* Some Style from the Bootstrap Default Theme */
 body {
   padding-top: 70px;
