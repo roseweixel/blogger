@@ -2,6 +2,7 @@ class Student < ActiveRecord::Base
   belongs_to :cohort
   has_many :blogs, dependent: :destroy
   has_many :blog_assignments, dependent: :destroy
+  has_many :schedules, through: :cohort
   
   validates :github_username, :presence => true, :uniqueness => true
 
@@ -19,6 +20,18 @@ class Student < ActiveRecord::Base
 
   def blog
     blogs.first
+  end
+
+  def blog_assignments_for_schedule(schedule)
+    blog_assignments.where(schedule_id: schedule.id)
+  end
+
+  def completed_blog_assignments(schedule)
+    blog_assignments_for_schedule(schedule).select { |b| b.completed? }
+  end
+
+  def percent_blog_assignments_completed(schedule)
+    (completed_blog_assignments(schedule).count.to_f / blog_assignments.count) * 100
   end
 
   def next_valid_day(previous_day, days_array, frequency)

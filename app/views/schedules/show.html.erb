@@ -35,13 +35,11 @@ Students should blog once every <%= @schedule.frequency %> days.
   <h3><%= day.strftime("%A, %m/%d") %></h3>
   <% @schedule.blog_assignments.where(due_date: day).each do |blog_assignment| %>
     <p>
-      <% posts_since_previous = blog_assignment.student.blog_entries_written_since_previous_assignment(blog_assignment.due_date) %>
-
       <strong>
-      <%= render 'greenlight', posts_since_previous: posts_since_previous, day: day %> 
-      <%= blog_assignment.student.full_name_or_github_name %>:</strong>
+      <%= render 'greenlight', blog_assignment: blog_assignment %> 
+      <%= link_to blog_assignment.student.full_name_or_github_name, cohort_student_path(@schedule.cohort, blog_assignment.student) %>:</strong>
 
-      <%= posts_since_previous.collect {|entry| (link_to entry.title, entry.url) + " (#{entry.published_date.strftime("%m/%d/%Y")})" }.to_sentence.html_safe %>
+      <%= blog_assignment.posts_since_previous.collect {|entry| (link_to entry.title, entry.url) + " (#{entry.published_date.strftime("%m/%d/%Y")})" }.to_sentence.html_safe %>
     <p>
   <% end %>
 <% end %>

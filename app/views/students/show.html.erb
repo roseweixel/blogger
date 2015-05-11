@@ -1,0 +1,35 @@
+<h1><%= @student.full_name_or_github_name %></h1>
+
+<br>
+
+<% @student.schedules.each do |schedule| %>
+  <legend><%= link_to schedule.name, cohort_schedule_path(schedule.cohort, schedule) %></legend>
+  <h3>Progress</h3>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="<%= @student.percent_blog_assignments_completed(schedule) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @student.percent_blog_assignments_completed(schedule) %>%;">
+      <%= @student.percent_blog_assignments_completed(schedule).round(2) %>%
+    </div>
+  </div>
+
+  <br>
+
+  <ul>
+  <% @student.blog_assignments(schedule).each do |blog_assignment| %>
+
+    <p style="font-size: 2em;">
+      <%= render 'schedules/greenlight', blog_assignment: blog_assignment %>
+      <%= blog_assignment.due_date.strftime("%A, %m/%d/%Y") %>: 
+      <%= link_to blog_assignment.most_recent_post_since_previous.title, blog_assignment.most_recent_post_since_previous.url if blog_assignment.most_recent_post_since_previous %>
+    </p>
+  <% end %>
+  </ul>
+<% end %>
+<h2>Blogs</h2>
+<% @student.blogs.each do |blog| %>
+  <h3><%= link_to blog.title, blog.url %></h3>
+  <ul>
+  <% blog.posts.each do |post| %>
+    <li><%= link_to post.title, post.url %> - <%= post.published_date.strftime("%m/%d/%Y") %></li>
+  <% end %>
+  </ul>
+<% end %>
