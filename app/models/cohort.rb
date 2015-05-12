@@ -2,9 +2,9 @@ require 'csv'
 require 'open-uri'
 
 class Cohort < ActiveRecord::Base
-  has_many :students, dependent: :destroy
-  has_many :blogs, through: :students
-  has_many :blog_assignments, through: :students
+  has_many :users, dependent: :destroy
+  has_many :blogs, through: :users
+  has_many :blog_assignments, through: :users
   has_many :schedules
   
   has_attached_file :roster_csv
@@ -17,7 +17,7 @@ class Cohort < ActiveRecord::Base
       if index == 0
         @student_attributes_array = row
       else
-        student = students.new.tap do |s|
+        student = users.new.tap do |s|
           @student_attributes_array.compact.each_with_index do |attribute, index|
             s.send(attribute + '=', row[index])
           end

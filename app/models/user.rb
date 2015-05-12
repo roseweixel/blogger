@@ -1,4 +1,4 @@
-class Student < ActiveRecord::Base
+class User < ActiveRecord::Base
   belongs_to :cohort
   has_many :blogs, dependent: :destroy
   has_many :posts, through: :blogs

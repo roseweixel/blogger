@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   resources :blogs
 
+  resources :users
+
   resources :cohorts do 
-    resources :students
     resources :schedules
   end
 

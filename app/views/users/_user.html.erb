@@ -1,0 +1,28 @@
+<tr>
+  <td><%= link_to user.full_name_or_github_name, user_path(user) %></td>
+  <td><%= user.email %></td>
+  <td><%= user.github_username %></td>
+
+  <% if user.blog %>
+    <td><%= link_to user.blog.title, user.blog.url %>
+    <br>
+    <%= link_to 'edit', edit_blog_path(user.blog), class: 'btn btn-default btn-xs' %>
+    <%= link_to 'delete', blog_path(user.blog), method: 'delete', class: 'btn btn-default btn-xs' %>
+    </td>
+  <% else %>
+    <td> - </td>
+  <% end %>
+
+  <% if user.blog && user.blog.posts.any? %>
+    <td><%= link_to truncate(user.blog.latest_post.title, length: 30), user.blog.latest_post.url, title: user.blog.latest_post.title %></td>
+    <td><%= user.blog.latest_post.published_date.strftime("%m/%d/%Y") %></td>
+  <% else %>
+    <td> - </td>
+    <td> - </td>
+  <% end %>
+
+  <td>
+    <%= link_to 'edit', edit_user_path(user), class: 'btn btn-default btn-xs' %>
+    <%= link_to 'delete', user_path(user), method: 'delete', class: 'btn btn-default btn-xs' %>
+  </td>
+</tr>

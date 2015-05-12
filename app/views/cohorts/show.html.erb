@@ -23,7 +23,7 @@
 </h4>
 
 <div class="toggleable-form-wrapper">
-  <%= render 'students/form', student: @cohort.students.new %>
+  <%= render 'users/form', user: @cohort.users.new %>
 </div>
 <%= render 'blogs/form', blog: Blog.new, cohort: @cohort %>
 
@@ -42,6 +42,6 @@
     </tr>
   </thead>
   <tbody>
-    <%= render @cohort.students.all.order(:last_name) %>
+    <%= render @cohort.users.all.order(:last_name) %>
   </tbody>
 </table>

@@ -23,7 +23,7 @@ class CohortsController < ApplicationController
   end
 
   def show
-    @cohort = Cohort.includes(students: [:blogs]).find(params[:id])
+    @cohort = Cohort.includes(users: [:blogs]).find(params[:id])
   end
 
   def destroy

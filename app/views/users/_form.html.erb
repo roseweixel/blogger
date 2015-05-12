@@ -1,4 +1,5 @@
-<%= form_for [student.cohort, student] do |f| %>
+<%= form_for user do |f| %>
+  <%= f.hidden_field :cohort_id, value: user.cohort_id %>
   <div class="form-group">
   <%= f.label :first_name %>
   <%= f.text_field :first_name, class:"form-control" %>
@@ -17,7 +18,7 @@
   <div class="form-group">
   <%= f.label :github_username %>
   <%= f.text_field :github_username, class:"form-control" %>
-  <%= f.hidden_field :cohort_id, value: student.cohort_id %>
+  <%= f.hidden_field :cohort_id, value: user.cohort_id %>
   </div>
   
   <div class="form-group">

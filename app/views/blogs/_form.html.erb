@@ -1,7 +1,7 @@
 <%= form_for blog, :html => {:class => 'form-inline'} do |f| %>
   <div class='form-group'>
-  <%= f.label :student, '<h4>Add a blog for: </h4>'.html_safe %>
-  <%= f.collection_select :student_id, cohort.students, :id, :full_name_or_github_name, {:prompt=>true}, {class: 'form-control'} %>
+  <%= f.label :user, '<h4>Add a blog for: </h4>'.html_safe %>
+  <%= f.collection_select :user_id, cohort.users, :id, :full_name_or_github_name, {:prompt=>true}, {class: 'form-control'} %>
   </div>
   <%= f.label :url, 'Blog url:' %>
   <%= f.text_field :url, class: 'form-control' %>

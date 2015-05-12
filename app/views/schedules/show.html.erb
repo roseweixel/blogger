@@ -37,7 +37,7 @@ Students should blog once every <%= @schedule.frequency %> days.
     <p>
       <strong>
       <%= render 'greenlight', blog_assignment: blog_assignment %> 
-      <%= link_to blog_assignment.student.full_name_or_github_name, cohort_student_path(@schedule.cohort, blog_assignment.student) %>:</strong>
+      <%= link_to blog_assignment.student.full_name_or_github_name, user_path(blog_assignment.user) %>:</strong>
 
       <%= blog_assignment.posts_since_previous.collect {|entry| (link_to entry.title, entry.url) + " (#{entry.published_date.strftime("%m/%d/%Y")})" }.to_sentence.html_safe %>
     <p>

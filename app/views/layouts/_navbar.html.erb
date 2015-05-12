@@ -6,7 +6,7 @@
     <div class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
         <% if current_user %>
-          <li><%= link_to "Hi #{current_user.first_name_or_github_name}! See your profile.", cohort_student_path(current_user.cohort, current_user) %></li>
+          <li><%= link_to "Hi #{current_user.first_name_or_github_name}! See your profile.", user_path(current_user) %></li>
           <li><%= link_to 'Sign Out', logout_path %></li>
         <% else %>
           <li><%= link_to 'Sign In With Github', login_path %></li>
