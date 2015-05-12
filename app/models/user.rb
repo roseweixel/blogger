@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
     due_date = valid_days[current_day_index]
     date_index = valid_days.index(due_date)
     until valid_days[date_index] == nil
-      schedule.blog_assignments.create(due_date: valid_days[date_index], student_id: id)
+      schedule.blog_assignments.create(due_date: valid_days[date_index], user_id: id)
       date_index += schedule.frequency
     end
   end
