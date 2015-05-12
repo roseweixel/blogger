@@ -1,0 +1,1 @@
+<%= link_to 'delete', membership_path(Membership.find_by(user_id: user.id, cohort_id: cohort.id)), method: 'delete', class: 'btn btn-default btn-xs', data: {confirm: "Are you sure you want to remove this person from this cohort?"} %>

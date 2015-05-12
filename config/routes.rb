@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :memberships
+
   resources :cohorts do 
     resources :schedules
   end

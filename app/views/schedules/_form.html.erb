@@ -2,27 +2,29 @@
   <div class="form-group">
     <h2>
       Create a New Blogging Schedule for <%= @cohort.name %> 
+    </h2>
+    <div class="form-group">
       <%= f.submit class: "btn btn-primary" %>
       <%= link_to 'Back', :back, class: 'btn btn-default' %>
-    </h2>
+    </div>
     <br>
     <%= f.label :name, 'Schedule Name' %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= f.label :start_date %>
-    <%= f.date_field :start_date %>
+    <%= f.date_field :start_date, class: "form-control" %>
   </div>
   
   <div class="form-group">
     <%= f.label :end_date %>
-    <%= f.date_field :end_date %>
+    <%= f.date_field :end_date, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= f.label :frequency %>:
-    each student should blog once every <%= f.number_field :frequency %> days
+    each student should blog once every <%= f.number_field :frequency, class: "form-control", style:"display: inline; width: 10%;" %> days
   </div>
 
   <% if @schedule.persisted? %>

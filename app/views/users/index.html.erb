@@ -1,0 +1,19 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Github Username</th>
+      <th>Blog</th>
+      <th>Latest Post</th>
+      <th>Published Date</th>
+      <th>edit/delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.all.each do |user| %>
+      <%= render 'user', user: user, cohort: nil %>
+    <% end %>  
+  </tbody>
+</table>
+

@@ -2,7 +2,7 @@ require 'csv'
 require 'open-uri'
 
 class Cohort < ActiveRecord::Base
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
   has_many :blogs, through: :users
   has_many :blog_assignments, through: :users
@@ -12,7 +12,7 @@ class Cohort < ActiveRecord::Base
   validates_attachment_file_name :roster_csv, :matches => [/csv\Z/]
 
   validates :name, :presence => true, :uniqueness => true
-  after_save :create_students
+  after_save :create_members
 
   def create_members
     return if !roster_csv.path

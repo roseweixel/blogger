@@ -1,1 +1,9 @@
-<%= render 'form', student: @student %>
+<h2>Edit <%= @user.full_name_or_github_name %></h2>
+
+<br>
+
+<%= render 'form', user: @user, cohort_id: nil %>
+
+<br>
+
+<%= link_to 'Cancel', :back %>

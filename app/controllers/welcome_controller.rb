@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
+  skip_before_action :require_login
+
   def index
-    @cohorts = Cohort.all
-    @cohort = Cohort.new
   end
+  
 end

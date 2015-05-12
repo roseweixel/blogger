@@ -1,6 +1,5 @@
-require 'csv'
-
 class CohortsController < ApplicationController
+  before_action :require_admin_status
 
   def create
     @cohort = Cohort.create(cohort_params)
@@ -24,6 +23,11 @@ class CohortsController < ApplicationController
 
   def show
     @cohort = Cohort.includes(users: [:blogs]).find(params[:id])
+  end
+
+  def index
+    @cohorts = Cohort.all
+    @cohort = Cohort.new
   end
 
   def destroy

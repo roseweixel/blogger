@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :cohorts, through: :memberships
   has_many :blogs, dependent: :destroy
   has_many :posts, through: :blogs
@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.email = auth.info.email
       user.image = auth.info.image
+      user.admin = user.is_admin?
       user.save
     end
   end
