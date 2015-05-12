@@ -9,6 +9,7 @@ class Student < ActiveRecord::Base
 
   def self.find_or_create_from_auth_hash(auth)
     where(github_username: auth.info.nickname).first_or_initialize.tap do |user|
+      user.access_token = auth.credentials.token
       user.github_username = auth.info.nickname
       user.provider = auth.provider
       user.uid = auth.uid
@@ -18,12 +19,22 @@ class Student < ActiveRecord::Base
     end
   end
 
-  def full_name_or_github_name
+  def is_authorized?
+    client.organization_member?('flatiron-school', github_username)
+  end
+
+  def name
     if first_name && last_name
       first_name + " " + last_name
-    else
-      github_username
     end
+  end
+
+  def client
+    Octokit::Client.new(:access_token => access_token)
+  end
+
+  def full_name_or_github_name
+    name || github_username
   end
 
   def first_name_or_github_name
