@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
-  belongs_to :cohort
+  has_many :memberships
+  has_many :cohorts, through: :memberships
   has_many :blogs, dependent: :destroy
   has_many :posts, through: :blogs
   has_many :blog_assignments, dependent: :destroy
-  has_many :schedules, through: :cohort
+  has_many :schedules, through: :cohorts
   
   validates :github_username, :presence => true, :uniqueness => true
 

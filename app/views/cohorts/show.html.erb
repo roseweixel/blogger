@@ -23,7 +23,7 @@
 </h4>
 
 <div class="toggleable-form-wrapper">
-  <%= render 'users/form', user: @cohort.users.new %>
+  <%= render 'users/form', user: User.new, cohort_id: @cohort.id %>
 </div>
 <%= render 'blogs/form', blog: Blog.new, cohort: @cohort %>
 

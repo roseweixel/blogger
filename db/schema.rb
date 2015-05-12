@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512153434) do
+ActiveRecord::Schema.define(version: 20150512172518) do
 
   create_table "blog_assignments", force: :cascade do |t|
     t.integer  "user_id"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 20150512153434) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "cohort_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer  "blog_id"
     t.string   "title"
@@ -63,7 +70,6 @@ ActiveRecord::Schema.define(version: 20150512153434) do
     t.string   "github_username"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "cohort_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"

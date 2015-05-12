@@ -33,7 +33,7 @@
     <% @schedule.blog_assignments.where(due_date: day).each do |blog_assignment| %>
       <%= f.fields_for :blog_assignments, blog_assignment do |blog_assignment_form| %>
         <div class="form-group" style="display: inline;">
-          <%= blog_assignment_form.collection_select :student_id, @schedule.cohort.users, :id, :full_name_or_github_name, {}, {class: "form-control", style: "display: inline; width: 15%"} %>
+          <%= blog_assignment_form.collection_select :user_id, @schedule.cohort.users, :id, :full_name_or_github_name, {}, {class: "form-control", style: "display: inline; width: 15%"} %>
           <%= blog_assignment_form.hidden_field :due_date, value: day %>
           <%= blog_assignment_form.hidden_field :schedule_id, value: @schedule.id %>
         </div>

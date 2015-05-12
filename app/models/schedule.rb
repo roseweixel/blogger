@@ -14,7 +14,7 @@ class Schedule < ActiveRecord::Base
     counter = 0
     weekdays_that_arent_holidays.each do |day|
       students_per_day.times do
-        blog_assignments.create(student_id: shuffled[counter].id, due_date: day)
+        blog_assignments.create(user_id: shuffled[counter].id, due_date: day)
         counter < (shuffled.length - 1) ? counter += 1 : counter = 0
       end
     end

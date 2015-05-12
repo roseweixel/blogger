@@ -44,7 +44,6 @@ class SchedulesController < ApplicationController
       @schedule.generate_blog_assignments_based_on_students_per_day
     end
     
-    flash[:priority] = @priority
     redirect_to cohort_schedule_path(@schedule.cohort, @schedule)
   end
 
@@ -63,6 +62,6 @@ class SchedulesController < ApplicationController
   private
 
     def schedule_params
-      params.require(:schedule).permit(:name, :start_date, :end_date, :cohort_id, :frequency, :blog_assignments_attributes => [:student_id, :due_date, :schedule_id, :id])
+      params.require(:schedule).permit(:name, :start_date, :end_date, :cohort_id, :frequency, :blog_assignments_attributes => [:user_id, :due_date, :schedule_id, :id])
     end
 end
