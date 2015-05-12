@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def is_authorized?
-    client.organization_member?('flatiron-school', github_username)
+    client.organization_member?('flatiron-school', github_username) || client.organization_member?('learn-co-students', github_username)
   end
 
   def is_admin?
