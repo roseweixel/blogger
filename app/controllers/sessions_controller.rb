@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   def create
     @user = Student.find_or_create_from_auth_hash(auth_hash)
     if @user.is_authorized?
-      @user = Student.find_or_create_from_auth_hash(auth_hash)
       session[:user_id] = @user.id
     else
       flash[:notice] = "You must be part of the Flatiron School Github organization to use Flatiron Blogger!"

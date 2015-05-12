@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to student.name, cohort_student_path(student.cohort, student) %></td>
+  <td><%= link_to student.full_name_or_github_name, cohort_student_path(student.cohort, student) %></td>
   <td><%= student.email %></td>
   <td><%= student.github_username %></td>
 
