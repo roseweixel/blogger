@@ -1,7 +1,7 @@
 class Schedule < ActiveRecord::Base
   belongs_to :cohort
   has_many :blog_assignments, dependent: :destroy
-  has_many :students, through: :cohort
+  has_many :users, through: :cohort
 
   accepts_nested_attributes_for :blog_assignments
   
@@ -10,7 +10,7 @@ class Schedule < ActiveRecord::Base
 
   # guarantees that there will be a consistent number of blog assignments on each day, frequency will be approximately what was specified
   def generate_blog_assignments_based_on_students_per_day
-    shuffled = cohort.students.shuffle
+    shuffled = cohort.users.shuffle
     counter = 0
     weekdays_that_arent_holidays.each do |day|
       students_per_day.times do
@@ -22,7 +22,7 @@ class Schedule < ActiveRecord::Base
 
   # guarantees specified frequency will be adhered to, side effect is sometimes days get skipped or have inconsistent number of students per day
   def generate_blog_assignments
-    shuffled = cohort.students.shuffle
+    shuffled = cohort.users.shuffle
     current_day_index = 0
     max_day = weekdays_that_arent_holidays.last
     shuffled.each_with_index do |student, index|
@@ -38,11 +38,11 @@ class Schedule < ActiveRecord::Base
   end
 
   def students_per_day
-    (posts_per_student * cohort.students.count) / weekdays_that_arent_holidays.count
+    (posts_per_student * cohort.users.count) / weekdays_that_arent_holidays.count
   end
 
   def leftover_posts
-    (posts_per_student * cohort.students.count) % weekdays_that_arent_holidays.count
+    (posts_per_student * cohort.users.count) % weekdays_that_arent_holidays.count
   end
 
   def days

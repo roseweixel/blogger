@@ -1,5 +1,5 @@
 class BlogAssignment < ActiveRecord::Base
-  belongs_to :student
+  belongs_to :user
   belongs_to :schedule
 
   def self.due_tomorrow
@@ -7,11 +7,11 @@ class BlogAssignment < ActiveRecord::Base
   end
 
   def completed?
-    student.blog_posts_written_since_previous_assignment(due_date).any?
+    user.blog_posts_written_since_previous_assignment(due_date).any?
   end
 
   def posts_since_previous
-    student.blog_posts_written_since_previous_assignment(due_date)
+    user.blog_posts_written_since_previous_assignment(due_date)
   end
 
   def most_recent_post_since_previous

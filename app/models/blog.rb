@@ -1,6 +1,6 @@
 class Blog < ActiveRecord::Base
-  belongs_to :student
-  delegate :cohort, to: :student
+  belongs_to :user
+  delegate :cohort, to: :user
   has_many :posts, dependent: :destroy
 
   validates :url, :presence => true, :uniqueness => true

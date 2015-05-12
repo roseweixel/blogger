@@ -54,7 +54,7 @@ class SchedulesController < ApplicationController
     redirect_to(:back)
 
     if @schedule.rotation_locked
-      @schedule.students.each do |student|
+      @schedule.users.each do |student|
         StudentMailer.initial_schedule_notification(@schedule, student).deliver_later if student.blog_assignments.any?
       end
     end

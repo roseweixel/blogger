@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def create
-    @user = Student.find_or_create_from_auth_hash(auth_hash)
+    @user = User.find_or_create_from_auth_hash(auth_hash)
     if @user.is_authorized?
       session[:user_id] = @user.id
     else

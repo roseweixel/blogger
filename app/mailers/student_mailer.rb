@@ -9,7 +9,7 @@ class StudentMailer < ApplicationMailer
 
   def reminder_email(blog_assignment)
     @blog_assignment = blog_assignment
-    @student = blog_assignment.student
+    @student = blog_assignment.user
 
     mail(to: @student.email, subject: "Blog post due tomorrow #{@blog_assignment.due_date.strftime("%m/%d")}")
   end

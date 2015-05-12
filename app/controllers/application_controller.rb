@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   private
  
     def current_user
-      Student.find(session[:user_id]) if session[:user_id]
+      User.find(session[:user_id]) if session[:user_id]
     end
 end
