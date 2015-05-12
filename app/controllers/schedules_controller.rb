@@ -55,7 +55,6 @@ class SchedulesController < ApplicationController
 
     if @schedule.rotation_locked
       @schedule.students.each do |student|
-        binding.pry
         StudentMailer.initial_schedule_notification(@schedule, student).deliver_later if student.blog_assignments.any?
       end
     end

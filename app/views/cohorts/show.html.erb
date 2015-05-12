@@ -14,9 +14,17 @@
 <br>
 <br>
 
-<h4>Add A Student</h4>
-<%= render 'students/form', student: @cohort.students.new %>
+<h4>
+  Add A Student 
+  <span class="toggle-buttons">
+    <i class="toggle-on fa fa-plus-circle"></i>
+    <i class="toggle-off fa fa-minus-circle"></i>
+  </span>
+</h4>
 
+<div class="toggleable-form-wrapper">
+  <%= render 'students/form', student: @cohort.students.new %>
+</div>
 <%= render 'blogs/form', blog: Blog.new, cohort: @cohort %>
 
 <br>

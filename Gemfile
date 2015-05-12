@@ -70,3 +70,4 @@ gem 'figaro'
 gem 'whenever', :require => false
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'octokit', '~> 3.0'
