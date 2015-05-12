@@ -25,7 +25,7 @@
 <div class="toggleable-form-wrapper">
   <%= render 'users/form', user: User.new, cohort_id: @cohort.id %>
 </div>
-<%= render 'blogs/form', blog: Blog.new, cohort: @cohort %>
+<strong>Add A Blog For:</strong> <%= render 'blogs/form', blog: Blog.new, cohort: @cohort %>
 
 <br>
 
@@ -42,6 +42,6 @@
     </tr>
   </thead>
   <tbody>
-    <%= render @cohort.users.all.order(:last_name) %>
+    <%= render @cohort.users.all.order(:last_name), cohort: @cohort %>
   </tbody>
 </table>

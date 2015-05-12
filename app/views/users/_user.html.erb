@@ -6,7 +6,7 @@
   <% if user.blog %>
     <td><%= link_to user.blog.title, user.blog.url %>
     <br>
-    <%= link_to 'edit', edit_blog_path(user.blog), class: 'btn btn-default btn-xs' %>
+    <%= link_to 'edit', edit_blog_path(user.blog, cohort_id: cohort.id), class: 'btn btn-default btn-xs' %>
     <%= link_to 'delete', blog_path(user.blog), method: 'delete', class: 'btn btn-default btn-xs' %>
     </td>
   <% else %>

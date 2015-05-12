@@ -1,1 +1,2 @@
-<%= render 'form', blog: @blog, cohort: @blog.cohort %>
+<h4>Edit blog for <%= @blog.user.full_name_or_github_name %></h4> 
+<%= render 'form', blog: @blog, cohort: nil %>

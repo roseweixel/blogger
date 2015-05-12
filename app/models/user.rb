@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     client.organization_member?('flatiron-school', github_username)
   end
 
+  def is_admin?
+    client.organization_member?('learn-co-curriculum', github_username)
+  end
+
   def name
     if first_name && last_name
       first_name + " " + last_name

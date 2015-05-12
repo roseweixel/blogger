@@ -5,7 +5,7 @@ class CohortsController < ApplicationController
   def create
     @cohort = Cohort.create(cohort_params)
     if @cohort.persisted? && @cohort.roster_csv
-      @cohort.create_students
+      @cohort.create_members
     elsif !@cohort.persisted?
       flash[:alert] = "This cohort could not be created!"
     end
