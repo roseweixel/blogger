@@ -35,6 +35,15 @@ class UsersController < ApplicationController
     redirect_to(:back)
   end
 
+  def get_new_posts
+    @user = User.find(params[:id])
+    @user.blogs.each do |blog|
+      blog.create_entries
+    end
+    flash[:success] = "New posts successfully retrieved!"
+    redirect_to(:back)
+  end
+
   private 
 
     def user_params

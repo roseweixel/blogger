@@ -1,4 +1,9 @@
-<h1><%= @user.full_name_or_github_name %></h1>
+<div class="row">
+  <h1>
+    <%= @user.full_name_or_github_name %> 
+    <%= link_to 'Get New Posts', get_new_posts_for_user_path(id: @user.id), class: 'btn btn-success pull-right' %>
+  </h1>
+</div>
 
 <br>
 
@@ -48,7 +53,9 @@
   </h3>
   <ul>
   <% blog.posts.each do |post| %>
-    <li><%= link_to post.title, post.url %> - <%= post.published_date.strftime("%m/%d/%Y") %></li>
+    <li style="margin-bottom: 5px;">
+      <%= link_to post.title, post.url %> - <%= post.published_date.strftime("%m/%d/%Y") %>
+    </li>
   <% end %>
   </ul>
 <% end %>

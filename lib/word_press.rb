@@ -1,10 +1,6 @@
 class WordPress
   def self.client
-    Rubypress::Client.new(
-      :host => "flatirontestblog.wordpress.com", 
-      :username => ENV["wordpress_username"], 
-      :password => ENV["wordpress_password"]
-    )
+    WordpressCom.new(ENV['wordpress_client_id'], ENV['wordpress_client_secret'])
   end
 
   def self.publish_to_wordpress(post)

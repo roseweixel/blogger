@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :blogs
 
+  resources :posts
+
   resources :users
 
   resources :memberships
@@ -15,6 +17,8 @@ Rails.application.routes.draw do
 
   post 'get_new_posts' => 'cohorts#get_new_posts'
 
+  get 'get_new_posts_for_user' => 'users#get_new_posts'
+
   post 'set_blog_rotation' => 'schedules#set_blog_rotation'
 
   match 'login', to: redirect('/auth/github'), via: [:get, :post]
@@ -22,4 +26,10 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
 
   get 'logout' => 'sessions#destroy'
+
+  get 'publish_post' => 'posts#publish_post'
+
+  get 'feature_post' => 'posts#feature_post'
+
+  get 'publish_posts' => 'posts#publish_posts'
 end

@@ -71,5 +71,4 @@ gem 'whenever', :require => false
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'octokit', '~> 3.0'
-gem 'rubypress'
 gem 'wordpress-com'

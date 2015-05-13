@@ -1,0 +1,18 @@
+<h1>Flatiron Blogger Magazine</h1>
+
+<div class="masonry-style-row">
+<% @posts.all.each do |post| %>
+  <div class="menu-category panel panel-default" style="max-width:95%; max-height: 400px; overflow:auto;">
+    <div class="panel-heading">
+      <div class="panel-title" style="font-size: 1em;">
+        <strong style="color: lightblue;"><%= link_to post.title, post.url %></strong>
+        by <%= post.user.full_name_or_github_name %> on <%= post.published_date.strftime("%m/%d/%Y") %>
+      </div>
+    </div>
+    <div class="panel-body">
+      <%= post.first_two_paragraphs.html_safe %>
+    </div>
+  </div>
+<% end %>
+</div>
+

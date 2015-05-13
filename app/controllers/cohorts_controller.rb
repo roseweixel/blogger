@@ -41,6 +41,7 @@ class CohortsController < ApplicationController
     @cohort.blogs.each do |blog|
       blog.create_entries
     end
+    flash[:success] = "New posts successfully retrieved!"
     redirect_to(:back)
   end
 
