@@ -16,6 +16,7 @@ class Blog < ActiveRecord::Base
         p.title = entry.title
         p.published_date = entry.published
         p.url = entry.url
+        p.content = entry.content
         p.save
       end
     end
