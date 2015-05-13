@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
     first_name || github_username
   end
 
+  # TODO: figure out how to handle which blog is the user's 'default' blog (or just allow users to have one blog)
   def blog
     blogs.first
   end
@@ -89,11 +90,7 @@ class User < ActiveRecord::Base
     if blog
       past_assignments = blog_assignments.where("due_date < ?", date)
       last_assignment = past_assignments.order('due_date DESC').first
-      if last_assignment
-        blog.posts_for_range(last_assignment.due_date, date)
-      else
-        blog.posts_on_or_before_date(date)
-      end
+      last_assignment ? blog.posts_for_range(last_assignment.due_date, date) : blog.posts_on_or_before_date(date)
     else
       []
     end

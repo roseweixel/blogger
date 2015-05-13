@@ -5,8 +5,10 @@ class Schedule < ActiveRecord::Base
 
   accepts_nested_attributes_for :blog_assignments
   
+  # TODO: add all the holidays and keep it as a class constant, or allow admin users to set holidays for a cohort via the user interface
   HOLIDAYS = ['25/05/2015', '04/07/2015'].map { |date| Date.parse(date) }
-  WEEKENDS = ['Saturday', 'Sunday']
+  
+  WEEKEND_DAYS = ['Saturday', 'Sunday']
 
   # guarantees that there will be a consistent number of blog assignments on each day, frequency will be approximately what was specified
   def generate_blog_assignments_based_on_users_per_day
@@ -50,7 +52,7 @@ class Schedule < ActiveRecord::Base
   end
 
   def weekdays
-    days.select { |day| !WEEKENDS.include?(day.strftime("%A")) }
+    days.select { |day| !WEEKEND_DAYS.include?(day.strftime("%A")) }
   end
 
   def weekdays_that_arent_holidays
