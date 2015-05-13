@@ -20,7 +20,7 @@
 </p>
 
 <p>
-Students should blog once every <%= @schedule.frequency %> days.
+Blogging frequency is once every <%= @schedule.frequency %> days.
 </p>
 
 <%= form_tag(generate_blog_rotation_path(id: @schedule.id), {method: :post, class: 'form-inline'}) do %>

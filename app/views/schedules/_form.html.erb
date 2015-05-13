@@ -24,7 +24,7 @@
 
   <div class="form-group">
     <%= f.label :frequency %>:
-    each student should blog once every <%= f.number_field :frequency, class: "form-control", style:"display: inline; width: 10%;" %> days
+    each person should blog once every <%= f.number_field :frequency, class: "form-control", style:"display: inline; width: 10%;" %> days
   </div>
 
   <% if @schedule.persisted? %>
