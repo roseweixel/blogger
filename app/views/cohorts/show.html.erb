@@ -2,7 +2,7 @@
 <%= @cohort.name %> 
 <%= link_to 'create a schedule', new_cohort_schedule_path(@cohort), class: 'btn btn-large btn-primary' %> 
 <%= link_to 'edit this cohort', edit_cohort_path(@cohort), class: 'btn btn-large btn-primary' %>
-<%= link_to 'get new posts', get_new_posts_path(cohort_id: @cohort.id), class: 'btn btn-large btn-primary', method: 'post' %>
+<%= link_to 'get new posts', get_new_posts_path(cohort_id: @cohort.id), class: 'btn btn-large btn-success', method: 'post' %>
 </h1>
 <h3>Schedules for this cohort:</h3>
 
