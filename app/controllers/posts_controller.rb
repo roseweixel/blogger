@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def feature_post
     wpc = WordPress.client
-    url = wpc.authorize_url("http://localhost:3000/publish_posts")
+    url = wpc.authorize_url(wordpress_redirect_url)
     redirect_to url
   end
 
@@ -11,17 +11,16 @@ class PostsController < ApplicationController
     @posts = Post.all
     code = params[:code]
     wpc = WordPress.client
-    wpc.get_token(code, "http://localhost:3000/publish_posts")
+    wpc.get_token(code, wordpress_redirect_url)
     session[:wordpress_auth] = wpc.serialize
   end
 
   def publish_post
-    wpc = WordpressCom.deserialize(session[:wordpress_auth])
+    @wpc = WordpressCom.deserialize(session[:wordpress_auth])
     @post = Post.find(params[:post_id])
-    success = wpc.post('posts/new', :body => {
-      :title => @post.title,
-      :content => @post.content
-    })
+
+    publish_post_to_wordpress
+
     flash[:success] = "#{@post.title} was successfully published to the Flatiron School blog!"
     redirect_to cohorts_path
   end
@@ -29,4 +28,17 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(published_date: :desc)
   end
+
+  private
+
+    def publish_post_to_wordpress
+      @wpc.post('posts/new', :body => {
+        :title => @post.title,
+        :content => @post.content
+      })
+    end
+
+    def wordpress_redirect_url
+      "http://localhost:3000/publish_posts"
+    end
 end

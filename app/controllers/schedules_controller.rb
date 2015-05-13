@@ -1,6 +1,7 @@
 class SchedulesController < ApplicationController
+  before_action :set_schedule, except: [:new, :create]
+  
   def show
-    @schedule = Schedule.find(params[:id])
   end
 
   def new
@@ -17,24 +18,20 @@ class SchedulesController < ApplicationController
   end
 
   def edit
-    @schedule = Schedule.find(params[:id])
     @cohort = @schedule.cohort
   end
 
   def update
-    @schedule = Schedule.find(params[:id])
     @schedule.update(schedule_params)
     redirect_to cohort_schedule_path(@schedule.cohort, @schedule)
   end
 
   def destroy
-    @schedule = Schedule.find(params[:id])
     @schedule.destroy
     redirect_to cohort_path(@schedule.cohort)
   end
 
   def generate_blog_rotation
-    @schedule = Schedule.find(params[:id])
     @schedule.cohort.blog_assignments.all.destroy_all
     @priority = params[:priority]
 
@@ -48,7 +45,6 @@ class SchedulesController < ApplicationController
   end
 
   def set_blog_rotation
-    @schedule = Schedule.find(params[:id])
     @schedule.toggle!(:rotation_locked)
     redirect_to(:back)
 
@@ -63,5 +59,9 @@ class SchedulesController < ApplicationController
 
     def schedule_params
       params.require(:schedule).permit(:name, :start_date, :end_date, :cohort_id, :frequency, :blog_assignments_attributes => [:user_id, :due_date, :schedule_id, :id])
+    end
+
+    def set_schedule
+      @schedule = Schedule.find(params[:id])
     end
 end

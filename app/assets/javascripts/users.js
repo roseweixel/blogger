@@ -1,8 +1,6 @@
 $(function(){
   $('#hidden-blog-form').hide();
-  $('#toggle-blog-form').click(function(e){
-    e.preventDefault();
-    e.stopPropagation();
+  $('#toggle-blog-form').click(function(){
     $('#hidden-blog-form').fadeToggle();
   });
 });

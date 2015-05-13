@@ -6,8 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      cohort = Cohort.find(params[:user][:cohort]) if params[:user][:cohort]
-      Membership.create(user_id: @user.id, cohort_id: cohort.id) if cohort
+      set_user_cohort
       redirect_to(:back)
     else
       flash[:alert] = @user.errors.full_messages.to_sentence
@@ -36,7 +35,6 @@ class UsersController < ApplicationController
   end
 
   def get_new_posts
-    @user = User.find(params[:id])
     @user.blogs.each do |blog|
       blog.create_entries
     end
@@ -59,5 +57,14 @@ class UsersController < ApplicationController
         flash[:alert] = "You're not allowed to see that!"
         redirect_to root_path
       end
+    end
+
+    def set_user_cohort
+      @cohort = Cohort.find(params[:user][:cohort]) if params[:user][:cohort]
+      create_membership
+    end
+
+    def create_membership
+      Membership.create(user_id: @user.id, cohort_id: @cohort.id) if @cohort
     end
 end
