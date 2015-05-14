@@ -1,5 +1,4 @@
 require 'csv'
-require 'open-uri'
 
 class Cohort < ActiveRecord::Base
   has_many :memberships, dependent: :destroy
