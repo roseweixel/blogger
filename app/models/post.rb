@@ -12,16 +12,16 @@ class Post < ActiveRecord::Base
     slugified_title.prepend("/")
   end
 
-  def first_two_paragraphs
-    content_array = content.split("<p>")
-    string = ""
-    2.times do |n|
-      if content_array[n+1] && content_array[n+1].class == String
-        string << "<p>"
-        string << content_array[n+1]
-      end
+  def blurb
+    lines = content.split("\n")
+    blurb = ""
+    n = 0
+    until (blurb.count("<p") >= 4 && blurb.length >= 200) || !lines[n]
+      blurb << lines[n] if !lines[n].include?("<code") && !lines[n].include?("</code>") && !lines[n].include?("figure class='code'")
+      blurb << "\n"
+      n += 1
     end
-    string
+    blurb
   end
 
 end
