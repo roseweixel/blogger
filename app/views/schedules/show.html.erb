@@ -27,5 +27,5 @@
 <%= render 'generate_blog_rotation_form' %>
 
 <% @schedule.weekdays_that_arent_holidays.each do |day| %>
-  <%= render @schedule.blog_assignments.where(due_date: day), day: day %>
+  <%= render 'day', day: day %>
 <% end %>

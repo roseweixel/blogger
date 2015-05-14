@@ -1,0 +1,3 @@
+<h3><%= day.strftime("%A, %m/%d") %></h3>
+
+<%= render @schedule.blog_assignments.where(due_date: day) %>
