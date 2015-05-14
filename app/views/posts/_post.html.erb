@@ -1,8 +1,8 @@
-<div class="menu-category panel panel-default">
+<div class="post menu-category panel panel-default">
   <div class="panel-heading">
     <div class="panel-title normalfont">
-      <strong class="lightblue"><%= link_to post.title, post.url %></strong>
-      by <%= post.user.full_name_or_github_name %> on <%= post.published_date.strftime("%m/%d/%Y") %>
+      <strong class="lightblue post-title"><%= link_to post.title, post.url %></strong>
+      by <span class="post-author"><%= post.user.full_name_or_github_name %></span> on <%= post.published_date.strftime("%m/%d/%Y") %>
     </div>
   </div>
   <div class="panel-body">

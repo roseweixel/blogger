@@ -1,5 +1,8 @@
 <h1>Flatiron Blogger Magazine</h1>
-
+<div class="form-group">
+<h3><%= select_tag "search options", options_for_select(["Search by title", "Search by author"]), class: 'form-control' %></h3>
+<%= text_field_tag 'query', nil, placeholder: 'enter search term', class: 'form-control' %>
+</div>
 <div class="masonry-style-row">
   <%= render @posts %>
 </div>

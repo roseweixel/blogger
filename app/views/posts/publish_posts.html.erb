@@ -5,7 +5,7 @@
 </div>
 <ul>
 <% @posts.all.each do |post| %>
-  <li>
+  <li class="post">
     <span class="post-title"><%= post.title %></span>: written by 
     <span class="post-author"><%= post.user.full_name_or_github_name %></span> on 
     <%= post.published_date.strftime("%m/%d/%Y") %> <%= link_to 'publish this post', publish_post_path(id: post.id), data: {confirm: "This will publish #{post.title} to the Flatiron School WordPress blog! Are you sure?"} %>
