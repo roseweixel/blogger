@@ -16,8 +16,8 @@ class PostsController < ApplicationController
   end
 
   def publish_post
+    @post = Post.find(params[:id])
     @wpc = WordpressCom.deserialize(session[:wordpress_auth])
-    @post = Post.find(params[:post_id])
 
     publish_post_to_wordpress
 

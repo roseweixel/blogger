@@ -1,0 +1,11 @@
+<div class="menu-category panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title normalfont">
+      <strong class="lightblue"><%= link_to post.title, post.url %></strong>
+      by <%= post.user.full_name_or_github_name %> on <%= post.published_date.strftime("%m/%d/%Y") %>
+    </div>
+  </div>
+  <div class="panel-body">
+    <%= post.first_two_paragraphs.html_safe %>
+  </div>
+</div>

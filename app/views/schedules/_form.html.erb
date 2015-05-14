@@ -1,8 +1,5 @@
 <%= form_for [@cohort, @schedule] do |f| %>
   <div class="form-group">
-    <h2>
-      Create a New Blogging Schedule for <%= @cohort.name %> 
-    </h2>
     <div class="form-group">
       <%= f.submit class: "btn btn-primary" %>
       <%= link_to 'Back', :back, class: 'btn btn-default' %>
@@ -28,21 +25,7 @@
   </div>
 
   <% if @schedule.persisted? %>
-  <% @schedule.weekdays_that_arent_holidays.each do |day| %>
-  
-  <h3><%= day.strftime("%A, %m/%d") %></h3>
-    <div class="form-group">
-    <% @schedule.blog_assignments.where(due_date: day).each do |blog_assignment| %>
-      <%= f.fields_for :blog_assignments, blog_assignment do |blog_assignment_form| %>
-        <div class="form-group" style="display: inline;">
-          <%= blog_assignment_form.collection_select :user_id, @schedule.cohort.users, :id, :full_name_or_github_name, {}, {class: "form-control", style: "display: inline; width: 15%"} %>
-          <%= blog_assignment_form.hidden_field :due_date, value: day %>
-          <%= blog_assignment_form.hidden_field :schedule_id, value: @schedule.id %>
-        </div>
-      <% end %>
-    <% end %>
-    </div>
-  <% end %>
+    <%= render 'blog_assignments_form', f: f %>
   <% end %>
 <% end %>
 

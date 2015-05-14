@@ -50,8 +50,26 @@ body {
 }
 
 .menu-category {
- display: inline-block;
- margin:  0.25rem;
- padding:  1rem;
- width:  100%; 
+  display: inline-block;
+  margin:  0.25rem;
+  padding:  1rem;
+  max-width:  95%; 
+  max-height: 400px; 
+  overflow:auto;
+}
+
+.lightblue {
+  color: lightblue;
+}
+
+.normalfont {
+  font-size: 1em;
+}
+
+.green {
+  color: #29CE5A;
+}
+
+.red {
+  color: red;
 }

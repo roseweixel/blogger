@@ -1,0 +1,7 @@
+<%= form_tag(generate_blog_rotation_path(id: @schedule.id), {method: :post, class: 'form-inline'}) do %>
+  <div class="form-group">
+    <%= select_tag "priority", options_for_select(["select a priority", "consistent number of blogs per day", "adhere to specified frequency"], selected: flash[:priority] || "select a priority"), class: 'form-control' %>
+    <%= submit_tag 'Generate Blog Rotation', class: 'btn btn-large btn-primary', id: 'generate' %>
+  </div>
+  <%= render 'set_blog_rotation', schedule: @schedule %>
+<% end %>

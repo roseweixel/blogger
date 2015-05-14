@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   belongs_to :blog
   delegate :user, to: :blog
   validates_uniqueness_of :url
-  validates_presence_of :url, :title
+  validates_presence_of :url, :title, :content
 
   def slugified_title
     title.gsub(" ", "-").downcase.gsub(/(?!-)\W/, "")
