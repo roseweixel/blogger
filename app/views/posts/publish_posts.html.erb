@@ -1,9 +1,12 @@
 <h1>Choose a post to publish!</h1>
-
+<div class="form-group">
+<h3>Search by title</h3>
+<%= text_field_tag 'query', nil, placeholder: 'enter search term', class: 'form-control' %>
+</div>
 <ul>
 <% @posts.all.each do |post| %>
   <li>
-    <%= post.title %>: written by 
+    <span class="post-title"><%= post.title %></span>: written by 
     <%= post.user.full_name_or_github_name %> on 
     <%= post.published_date.strftime("%m/%d/%Y") %> <%= link_to 'publish this post', publish_post_path(id: post.id), data: {confirm: "This will publish #{post.title} to the Flatiron School WordPress blog! Are you sure?"} %>
   </li>
