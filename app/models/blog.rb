@@ -16,7 +16,7 @@ class Blog < ActiveRecord::Base
         p.title = entry.title
         p.published_date = entry.published
         if entry.url.start_with?("/")
-          p.url = (url + entry.url).gsub("//", "/")
+          p.url = (url + entry.url[1..-1])
         else
           p.url = entry.url
         end
