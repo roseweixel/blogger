@@ -15,7 +15,11 @@ class Blog < ActiveRecord::Base
       posts.create.tap do |p|
         p.title = entry.title
         p.published_date = entry.published
-        p.url = entry.url
+        if entry.url.start_with?("/")
+          p.url = (url + entry.url).gsub("//", "/")
+        else
+          p.url = entry.url
+        end
         p.content = entry.content
         p.save
       end

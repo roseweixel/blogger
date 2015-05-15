@@ -12,8 +12,7 @@ $(function(){
     $('.post-' + searchAttribute + ':contains(' + query + ')').closest('.post').show();
   });
 
-  var images = $('img').add('iframe').add('.code');
-  // debugger;
+  var images = $('img').add('iframe');
 
   $.each(images, function(index, image) {
     if ($(image).parent().width() > $(image).parent().parent().width()) {
