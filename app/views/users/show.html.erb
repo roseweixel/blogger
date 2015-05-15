@@ -22,7 +22,7 @@
 
     <%= form_for Blog.new, html: {class: 'form-inline', id: 'hidden-blog-form'} do |f| %>
       <%= f.label :url %>
-      <%= f.text_field :url, class: 'form-control' %>
+      <%= f.text_field :url, placeholder: 'full url including http', class: 'form-control', pattern:'^htt(p|ps):\/\/.+' %>
       <%= f.hidden_field :user_id, value: @user.id %>
       <%= f.submit class: 'form-control' %>
     <% end %>

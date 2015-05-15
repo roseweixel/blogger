@@ -1,5 +1,5 @@
 <h3>
-  <%= link_to blog.title, blog.url %>
+  <%= link_to blog.title, blog.full_url %>
   <%= link_to 'edit', edit_blog_path(blog), class: 'btn btn-default btn-sm' %>
   <%= link_to 'delete', blog_path(blog), method: 'delete', class: 'btn btn-default btn-sm', data: {confirm: "Are you sure you want to delete this blog?"} %>
 </h3>

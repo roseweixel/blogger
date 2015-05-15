@@ -4,10 +4,26 @@ class Blog < ActiveRecord::Base
 
   validates :url, :presence => true, :uniqueness => true
 
+  validate :url_is_valid
+
   after_create :set_title, :create_entries
 
   def set_title
     self.update(title: feed.title)
+  end
+
+  def url_is_valid
+    if !url.start_with?("http://") && !url.start_with?("https://")
+      errors.add(:url, "You must enter the full blog url starting with http")
+    end
+  end
+
+  def full_url
+    if !url.start_with?("http://") && !url.start_with?("https://")
+      "http://" + url
+    else
+      url
+    end
   end
 
   def create_entries
