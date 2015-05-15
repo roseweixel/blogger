@@ -39,6 +39,6 @@ class PostsController < ApplicationController
     end
 
     def wordpress_redirect_url
-      "http://localhost:3000/publish_posts"
+      request.base_url + publish_posts_path
     end
 end
