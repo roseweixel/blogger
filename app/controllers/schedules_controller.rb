@@ -12,9 +12,13 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     @schedule.cohort_id = (params[:cohort_id])
-    @schedule.save
-
-    redirect_to cohort_schedule_path(@schedule.cohort, @schedule)
+    if @schedule.save
+      flash[:notice] = "Schedule successfully created!"
+      redirect_to cohort_schedule_path(@schedule.cohort, @schedule)
+    else
+      flash[:alert] = @schedule.errors.full_messages.to_sentence
+      redirect_to(:back)
+    end
   end
 
   def edit
@@ -22,7 +26,11 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    @schedule.update(schedule_params)
+    if @schedule.update(schedule_params)
+      flash[:notice] = "Schedule successfully updated!"
+    else
+      flash[:alert] = @schedule.errors.full_messages.to_sentence
+    end
     redirect_to cohort_schedule_path(@schedule.cohort, @schedule)
   end
 
