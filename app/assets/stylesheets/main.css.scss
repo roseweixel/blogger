@@ -1,0 +1,36 @@
+.progress-bar {
+  background-image: none;
+  background-color: #29CE5A;
+}
+
+.masonry-style-row {
+ -moz-column-width: 18em;
+ -webkit-column-width: 18em;
+ -moz-column-gap: 1em;
+ -webkit-column-gap: 1em; 
+}
+
+.menu-category {
+  display: inline-block;
+  margin:  0.25rem;
+  padding:  1rem;
+  max-width:  95%; 
+  max-height: 400px; 
+  overflow:auto;
+}
+
+.lightblue {
+  color: lightblue;
+}
+
+.normalfont {
+  font-size: 1em;
+}
+
+.green {
+  color: #29CE5A;
+}
+
+.red {
+  color: red;
+}
