@@ -1,6 +1,5 @@
 <legend>
   <%= link_to schedule.name, cohort_schedule_path(schedule.cohort, schedule) %>
-
 </legend>
   
 <%= render 'progress', schedule: schedule %>
@@ -9,8 +8,7 @@
 
 <ul>
 <% @user.blog_assignments(schedule).each do |blog_assignment| %>
-
-  <p style="font-size: 2em;">
+  <p class="large-font">
     <%= render 'schedules/greenlight', blog_assignment: blog_assignment %>
     <%= blog_assignment.due_date.strftime("%A, %m/%d/%Y") %>: 
     <%= link_to blog_assignment.most_recent_post_since_previous.title, blog_assignment.most_recent_post_since_previous.url if blog_assignment.most_recent_post_since_previous %>

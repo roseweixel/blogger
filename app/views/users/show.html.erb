@@ -11,18 +11,23 @@
   <%= render 'user_schedule', schedule: schedule %>
 <% end %>
 
-<h2 style="height: 45px;">
-  Blogs
-  <span style="font-size: 0.5em; vertical-align: middle;">
+<div class="row">
+
+  <h2 id="blogs-header" class="col-md-1">
+    Blogs
+  </h2>
+
+  <div id="add-blog" class="col-md-6">
     <%= link_to "Add A Blog", "#", class: 'btn btn-default btn-sm', id: 'toggle-blog-form' %>
 
-    <%= form_for Blog.new, html: {class: 'form-inline', style: 'display: inline-block;', id: 'hidden-blog-form'} do |f| %>
+    <%= form_for Blog.new, html: {class: 'form-inline', id: 'hidden-blog-form'} do |f| %>
       <%= f.label :url %>
       <%= f.text_field :url, class: 'form-control' %>
       <%= f.hidden_field :user_id, value: @user.id %>
       <%= f.submit class: 'form-control' %>
     <% end %>
-  </span>
-</h2>
+  </div>
+
+</div>
 
 <%= render @user.blogs %>

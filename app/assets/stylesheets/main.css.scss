@@ -34,3 +34,22 @@
 .red {
   color: red;
 }
+
+.large-font {
+  font-size: 2em;
+}
+
+#add-blog {
+  font-size: 0.8em;
+  padding-top: 25px;
+}
+
+#hidden-blog-form {
+  display: inline-block;
+}
+
+#hidden-blog-form input {
+  height: 33px;
+  font-size: 0.8em;
+  vertical-align: middle;
+}
