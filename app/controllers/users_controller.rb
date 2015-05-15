@@ -18,11 +18,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+    set_from_uri
   end
 
   def update
     @user.update(user_params)
-    redirect_to(cohort_path(@user.cohort))
+    redirect_to_from_uri
   end
 
   def index
