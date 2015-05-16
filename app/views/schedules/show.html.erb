@@ -1,9 +1,11 @@
-<h1><%= @schedule.name %></h1>
-<%= link_to 'back to cohort page', cohort_path(@schedule.cohort), class: "btn btn-default" %> 
-<%= link_to 'edit this schedule', edit_cohort_schedule_path(@schedule.cohort, @schedule), class: "btn btn-default" %>
-<%= link_to 'get new posts', get_new_posts_path(id: @schedule.cohort.id), class: 'btn btn-large btn-success', method: 'post' %>
-<br>
-<br>
+<div class="row extra-margin-bottom">
+  <div class="col-md-12">
+    <h1><%= @schedule.name %></h1>
+    <%= link_to 'back to cohort page', cohort_path(@schedule.cohort), class: "btn btn-default" %> 
+    <%= link_to 'edit this schedule', edit_cohort_schedule_path(@schedule.cohort, @schedule), class: "btn btn-default" %>
+    <%= link_to 'get new posts', get_new_posts_path(id: @schedule.cohort.id), class: 'btn btn-large btn-success', method: 'post' %>
+  </div>
+</div>
 
 <p>
   <strong>Cohort: </strong>

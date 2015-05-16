@@ -22,8 +22,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    redirect_to_from_uri
+    if @user.update(user_params)
+      flash[:success] = "Update successful!"
+      redirect_to_from_uri
+    else
+      flash[:alert] = @user.errors.full_messages.to_sentence
+      redirect_to(:back)
+    end
   end
 
   def index

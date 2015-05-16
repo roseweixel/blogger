@@ -1,17 +1,21 @@
-<legend>
-  <%= link_to schedule.name, cohort_schedule_path(schedule.cohort, schedule) %>
-</legend>
-  
-<%= render 'progress', schedule: schedule %>
+<div class="well">
+  <legend>
+    <%= link_to schedule.name, cohort_schedule_path(schedule.cohort, schedule) %>
+  </legend>
+    
+  <div class="row">
+    <div class="col-md-12">
+      <%= render 'progress', schedule: schedule %>
+    </div>
+  </div>
 
-<br>
-
-<ul>
-<% @user.blog_assignments(schedule).each do |blog_assignment| %>
-  <p class="large-font">
-    <%= render 'schedules/greenlight', blog_assignment: blog_assignment %>
-    <%= blog_assignment.due_date.strftime("%A, %m/%d/%Y") %>: 
-    <%= link_to blog_assignment.most_recent_post_since_previous.title, blog_assignment.most_recent_post_since_previous.url if blog_assignment.most_recent_post_since_previous %>
-  </p>
-<% end %>
-</ul>
+  <ul>
+  <% @user.blog_assignments(schedule).each do |blog_assignment| %>
+    <p class="large-font">
+      <%= render 'schedules/greenlight', blog_assignment: blog_assignment %>
+      <%= blog_assignment.due_date.strftime("%A, %m/%d/%Y") %>: 
+      <%= link_to blog_assignment.most_recent_post_since_previous.title, blog_assignment.most_recent_post_since_previous.url if blog_assignment.most_recent_post_since_previous %>
+    </p>
+  <% end %>
+  </ul>
+</div>

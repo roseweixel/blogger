@@ -1,10 +1,9 @@
 <%= form_for [@cohort, @schedule] do |f| %>
   <div class="form-group">
-    <div class="form-group">
+    <div class="form-group extra-margin-bottom">
       <%= f.submit class: "btn btn-primary" %>
       <%= link_to 'Back', :back, class: 'btn btn-default' %>
     </div>
-    <br>
     <%= f.label :name, 'Schedule Name' %>
     <%= f.text_field :name, class: "form-control" %>
   </div>

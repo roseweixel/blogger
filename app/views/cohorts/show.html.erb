@@ -4,32 +4,41 @@
 <%= link_to 'edit this cohort', edit_cohort_path(@cohort), class: 'btn btn-large btn-primary' %>
 <%= link_to 'get new posts', get_new_posts_path(id: @cohort.id), class: 'btn btn-large btn-success', method: 'post' %>
 </h1>
-<h3>Schedules for this cohort:</h3>
 
-<%= render @cohort.schedules %>
+<div class="row extra-margin-bottom">
+  <div class="col-md-12">
+    <h3>Schedules for this cohort:</h3>
+    <%= render @cohort.schedules %>
+  </div>
+</div>
 
-<br>
-<br>
+<div class="row extra-margin-bottom well">
+  <div class="col-md-12">
+    <legend>
+      Add A Member to This Cohort 
+    </legend>
+    <%= render 'memberships/form', cohort: @cohort %>
 
-<h4>
-  Add A Member to This Cohort 
-</h4>
-<%= render 'memberships/form', cohort: @cohort %>
+    <h4>
+      Add A New Member 
+      <span class="toggle-buttons">
+        <i class="toggle-on fa fa-plus-circle"></i>
+        <i class="toggle-off fa fa-minus-circle"></i>
+      </span>
+    </h4>
+  </div>
+</div>
 
-<h4>
-  Add A New Member 
-  <span class="toggle-buttons">
-    <i class="toggle-on fa fa-plus-circle"></i>
-    <i class="toggle-off fa fa-minus-circle"></i>
-  </span>
-</h4>
 
 <div class="toggleable-form-wrapper">
   <%= render 'users/form', user: User.new, cohort_id: @cohort.id %>
 </div>
-<strong>Add A Blog For:</strong> <%= render 'blogs/form', blog: Blog.new, cohort: @cohort %>
 
-<br>
+<div class="row">
+  <div class="col-md-12 extra-margin-bottom">
+    <strong>Add A Blog For:</strong> <%= render 'blogs/form', blog: Blog.new, cohort: @cohort %>
+  </div>
+</div>
 
 <table class="table table-striped">
   <thead>

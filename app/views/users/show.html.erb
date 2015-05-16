@@ -1,11 +1,11 @@
-<div class="row">
-  <h1>
-    <%= @user.full_name_or_github_name %> 
-    <%= link_to 'Get New Posts', get_new_posts_for_user_path(id: @user.id), class: 'btn btn-success pull-right' %>
-  </h1>
+<div class="row extra-margin-bottom">
+  <div class="col-md-12">
+    <h1>
+      <%= @user.full_name_or_github_name %> 
+      <%= link_to 'Get New Posts', get_new_posts_for_user_path(id: @user.id), class: 'btn btn-success pull-right' %>
+    </h1>
+  </div>
 </div>
-
-<br>
 
 <% @user.schedules.each do |schedule| %>
   <%= render 'user_schedule', schedule: schedule %>

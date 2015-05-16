@@ -1,17 +1,17 @@
-<%= form_for @cohort, html: {class: "form-inline"} do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class:"form-control" %>
-  </div>
-  <br>
-  <br>
-  <div class="form-group">
-    <%= f.label :roster_csv %>
-    <%= f.file_field :roster_csv %>
-  </div>
-  <br>
-  <br>
-  <div class="form-group">
-    <%= f.submit class: "form-control btn-primary" %>
-  </div>
-<% end %>
+<div class="well">
+  <%= form_for @cohort do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :roster_csv %>
+      <%= f.file_field :roster_csv %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit class: "form-control btn-primary" %>
+    </div>
+  <% end %>
+</div>

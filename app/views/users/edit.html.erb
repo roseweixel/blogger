@@ -1,9 +1,7 @@
-<h2>Edit <%= @user.full_name_or_github_name %></h2>
+<div class="well">
+  <legend>Edit <%= @user.full_name_or_github_name %></legend>
 
-<br>
+  <%= render 'form', user: @user, cohort_id: nil %>
 
-<%= render 'form', user: @user, cohort_id: nil %>
-
-<br>
-
-<%= link_to 'Cancel', :back %>
+  <%= link_to 'Cancel', :back %>
+</div>

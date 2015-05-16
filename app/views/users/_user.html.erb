@@ -4,10 +4,12 @@
   <td><%= user.github_username %></td>
 
   <% if user.blog %>
-    <td><%= link_to user.blog.title, user.blog.full_url %>
-    <br>
-    <%= link_to 'edit', edit_blog_path(user.blog, cohort: cohort), class: 'btn btn-default btn-xs' %>
-    <%= link_to 'delete', blog_path(user.blog), method: 'delete', class: 'btn btn-default btn-xs', data: {confirm: "Are you sure you want to delete this blog?"} %>
+    <td class="extra-margin-bottom">
+      <div>
+        <%= link_to user.blog.title, user.blog.full_url %>
+      </div>
+      <%= link_to 'edit', edit_blog_path(user.blog, cohort: cohort), class: 'btn btn-default btn-xs' %>
+      <%= link_to 'delete', blog_path(user.blog), method: 'delete', class: 'btn btn-default btn-xs', data: {confirm: "Are you sure you want to delete this blog?"} %>
     </td>
   <% else %>
     <td> - </td>
