@@ -21,7 +21,10 @@ class CohortsController < ApplicationController
   end
 
   def show
-    @cohort = Cohort.includes(users: [:blogs]).find(params[:id])
+    @cohort = Cohort.find(params[:id])
+    
+    # order the users by last_name, and if there's no last_name use github_username in its place
+    @users = @cohort.users.order("COALESCE(NULLIF(lower(last_name), ''), lower(github_username))")
   end
 
   def index

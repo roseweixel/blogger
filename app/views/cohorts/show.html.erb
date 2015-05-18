@@ -53,6 +53,6 @@
     </tr>
   </thead>
   <tbody>
-    <%= render @cohort.users.all.order(:github_username), cohort: @cohort %>
+    <%= render @users, cohort: @cohort %>
   </tbody>
 </table>
