@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
   has_many :blog_assignments, dependent: :destroy
   has_many :schedules, through: :cohorts
   
-  validates :github_username, :presence => true, :uniqueness => true, length: { maximum: 20 }
-  validates :first_name, length: { maximum: 20 }
-  validates :last_name, length: { maximum: 20 }
-  validates :email, length: { in: 6..40 }
+  validates :github_username, :presence => true, :uniqueness => true, length: { maximum: 50 }
+  validates :first_name, length: { maximum: 50 }
+  validates :last_name, length: { maximum: 50 }
+  validates :email, length: { in: 6..50 }
 
   def self.find_or_create_from_auth_hash(auth)
     where(github_username: auth.info.nickname).first_or_initialize.tap do |user|

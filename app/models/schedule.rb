@@ -4,6 +4,7 @@ class Schedule < ActiveRecord::Base
   has_many :users, through: :cohort
 
   validate :end_date_is_after_start_date
+  validates :name, length: { maximum: 50 }
 
   accepts_nested_attributes_for :blog_assignments
   

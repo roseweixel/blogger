@@ -10,7 +10,7 @@ class Cohort < ActiveRecord::Base
   has_attached_file :roster_csv
   validates_attachment_file_name :roster_csv, :matches => [/csv\Z/]
   
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, :presence => true, :uniqueness => true, length: { maximum: 50 }
   
   after_save :create_members
 
