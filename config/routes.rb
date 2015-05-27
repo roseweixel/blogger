@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   post 'generate_blog_rotation' => 'schedules#generate_blog_rotation'
 
+  post 'schedules/update_holidays' => 'schedules#update_holidays'
+
   post 'get_new_posts' => 'cohorts#get_new_posts'
 
   get 'get_new_posts_for_user' => 'users#get_new_posts'

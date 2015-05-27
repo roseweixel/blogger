@@ -1,7 +1,13 @@
 class SchedulesController < ApplicationController
-  before_action :set_schedule, except: [:new, :create]
+  before_action :set_schedule, except: [:new, :create, :update_holidays]
   
   def show
+  end
+
+  def update_holidays
+    holidays = params[:holidays].split(", ").map{|date| Date.strptime(date, "%m/%d/%Y")}
+    Holiday.set_holidays(holidays)
+    redirect_to :back
   end
 
   def new

@@ -21,7 +21,7 @@ class Post < ActiveRecord::Base
       blurb << "\n"
       n += 1
     end
-    blurb
+    blurb.gsub(/<img.+\>/, "")
   end
 
 end

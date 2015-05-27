@@ -30,6 +30,7 @@ class CohortsController < ApplicationController
   def index
     @cohorts = Cohort.all
     @cohort = Cohort.new
+    gon.holidays = Holiday.all.pluck(:date).map{|date| date.strftime("%m/%d/%Y")}.join(" ")
   end
 
   def destroy

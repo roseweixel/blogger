@@ -6,6 +6,7 @@ class Cohort < ActiveRecord::Base
   has_many :blogs, through: :users
   has_many :blog_assignments, through: :users
   has_many :schedules, dependent: :destroy
+  has_many :holidays, through: :schedules
   
   has_attached_file :roster_csv
   validates_attachment_file_name :roster_csv, :matches => [/csv\Z/]

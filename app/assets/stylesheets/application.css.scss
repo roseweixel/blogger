@@ -12,6 +12,7 @@
  *
  *= require_tree ../../../vendor/assets/stylesheets/.
  *= require "readable.css"
+ *= require jquery-ui/datepicker
  *= require_tree .
  *= require_self
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"

@@ -1,4 +1,14 @@
+<%#= include_gon %>
 <h1>Admin Dashboard</h1>
+<%= form_tag('/schedules/update_holidays') do %>
+  <div class="form-group">  
+    Holidays: 
+    <%= text_field_tag 'holidays', nil, class: 'holidays_input' %>  
+  </div>
+  <div class="form-group">  
+    <%= submit_tag 'Update Holidays' %>  
+  </div>
+<% end %>
 <div class="row">
   <div class="col-md-4">
     <h3>Create a New Cohort</h3>

@@ -27,6 +27,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(published_date: :desc)
+    binding.pry
   end
 
   private

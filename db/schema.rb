@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513134835) do
+ActiveRecord::Schema.define(version: 20150527175701) do
 
   create_table "blog_assignments", force: :cascade do |t|
     t.integer  "user_id"
@@ -37,6 +37,10 @@ ActiveRecord::Schema.define(version: 20150513134835) do
     t.datetime "roster_csv_updated_at"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "holidays", force: :cascade do |t|
+    t.date "date"
   end
 
   create_table "memberships", force: :cascade do |t|
