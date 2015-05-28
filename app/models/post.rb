@@ -13,11 +13,11 @@ class Post < ActiveRecord::Base
   end
 
   def blurb
-    lines = content.split("\n")
+    lines = (ActionController::Base.helpers.strip_tags(content)).split("\n")
     blurb = ""
     n = 0
-    until (blurb.count("<p") >= 4 && blurb.length >= 200) || !lines[n]
-      blurb << lines[n] if !lines[n].include?("<code") && !lines[n].include?("</code>") && !lines[n].include?("figure class='code'")
+    until blurb.length >= 200 || !lines[n]
+      blurb << lines[n] if !lines[n].match(/&lt/)
       blurb << "\n"
       n += 1
     end
