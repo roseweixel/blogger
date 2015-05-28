@@ -1,3 +1,4 @@
+<% if !post.blurb.empty? %>
 <div class="post menu-category panel panel-default">
   <div class="panel-heading">
     <div class="panel-title normalfont">
@@ -6,6 +7,7 @@
     </div>
   </div>
   <div class="panel-body">
-    <%= post.blurb.html_safe %>
+    <%= post.blurb %>
   </div>
 </div>
+<% end %>
