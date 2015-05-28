@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
+  resources :holidays, only: [:create]
+
   resources :blogs
 
   resources :posts
@@ -34,4 +36,6 @@ Rails.application.routes.draw do
   get 'feature_post' => 'posts#feature_post'
 
   get 'publish_posts' => 'posts#publish_posts'
+
+  post 'set_default_holidays' => 'holidays#set_default_holidays'
 end

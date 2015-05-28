@@ -3,9 +3,11 @@ $(function() {
     
     var holidays = gon.holidays.split(" ");
     var dates = []
-    
+
     holidays.forEach(function(date){
-      dates.push(new Date(date))
+      if (date !== "") {
+        dates.push(new Date(date))
+      }
     });
 
     $(".holidays_input").datepicker({

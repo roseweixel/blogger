@@ -8,8 +8,6 @@ class Schedule < ActiveRecord::Base
 
   accepts_nested_attributes_for :blog_assignments
 
-  # # TODO: add all the holidays and keep it as a class constant, or allow admin users to set holidays for a cohort via the user interface
-
   WEEKEND_DAYS = ['Saturday', 'Sunday']
 
   def end_date_is_after_start_date
@@ -62,6 +60,6 @@ class Schedule < ActiveRecord::Base
   end
 
   def weekdays_that_arent_holidays
-    weekdays - @@holidays
+    weekdays - Holiday.all.pluck(:date)
   end
 end

@@ -1,0 +1,9 @@
+<p>
+  <h5 class="inline-header">
+    <%= holiday.date.strftime("%m/%d/%Y") %>
+  </h5>
+  <% holidays = Holidays.on(holiday.date, :us, :observed) %>
+  <% holidays.each do |holiday| %>
+    | <%= holiday[:name] %>
+  <% end %>
+</p>
