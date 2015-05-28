@@ -1,10 +1,18 @@
-// $(function() {
-//     if (gon) {
-//       var holidays = gon.holidays.split(" ");
-//       $( ".holidays_input" ).multiDatesPicker({
-//           addDates: holidays,
-//           numberOfMonths: 1
-//       });
-      
-//     }
-// });
+$(function() {
+  if (window.location.href.split("/").pop() === "cohorts" || window.location.href.split("/").pop() === "cohorts#") {
+    
+    var holidays = gon.holidays.split(" ");
+    var dates = []
+    
+    holidays.forEach(function(date){
+      dates.push(new Date(date))
+    });
+
+    $(".holidays_input").datepicker({
+      format: 'mm/dd/yyyy',
+      multidate: true,
+      multidateSeparator: ', '
+    });
+    $('.holidays_input').datepicker('setDates', dates);
+  }
+});
