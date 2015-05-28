@@ -58,10 +58,18 @@
   margin-bottom: 15px;
 }
 
+#edit-or-delete-user {
+  width: 120px;
+}
+
 .post-title {
   white-space: normal;
 }
 
-.inline-header {
+.inline {
   display: inline;
+}
+
+.small-field {
+  width: 10%;
 }

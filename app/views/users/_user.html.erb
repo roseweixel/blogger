@@ -23,7 +23,7 @@
     <td> - </td>
   <% end %>
 
-  <td style="width: 120px;">
+  <td id="edit-or-delete-user">
     <%= link_to 'edit', edit_user_path(user), class: 'btn btn-default btn-xs' %>
     <% if cohort %>
       <%= render 'users/remove_from_cohort', user: user, cohort: @cohort %>

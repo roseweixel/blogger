@@ -1,4 +1,4 @@
-<%= form_for blog, :html => {:class => 'form-inline', style: 'display: inline-block;'} do |f| %>
+<%= form_for blog, :html => {:class => 'form-inline inline'} do |f| %>
   <div class='form-group'>
   <% if cohort %>
     <%= f.collection_select :user_id, cohort.users, :id, :full_name_or_github_name, {:prompt=>true}, {class: 'form-control'} %>

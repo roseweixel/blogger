@@ -1,5 +1,5 @@
 <p>
-  <h5 class="inline-header">
+  <h5 class="inline">
     <%= holiday.date.strftime("%m/%d/%Y") %>
   </h5>
   <% holidays = Holidays.on(holiday.date, :us, :observed) %>
