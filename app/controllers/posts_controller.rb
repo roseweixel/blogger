@@ -21,7 +21,7 @@ class PostsController < ApplicationController
 
     publish_post_to_wordpress
 
-    flash[:success] = "#{@post.title} was successfully published to the Flatiron School blog!"
+    flash[:success] = "#{@post.title} was successfully published to the Flatiron School blog with draft status."
     redirect_to cohorts_path
   end
 
