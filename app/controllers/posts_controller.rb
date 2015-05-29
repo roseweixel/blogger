@@ -34,7 +34,8 @@ class PostsController < ApplicationController
     def publish_post_to_wordpress
       @wpc.post('posts/new', :body => {
         :title => @post.title,
-        :content => @post.content
+        :content => @post.content_for_wordpress,
+        :status => 'draft'
       })
     end
 

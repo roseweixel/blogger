@@ -12,6 +12,14 @@ class Post < ActiveRecord::Base
     slugified_title.prepend("/")
   end
 
+  def content_for_wordpress
+    original_credit_for_wordpress + content
+  end
+
+  def original_credit_for_wordpress
+    "<strong>This post originally appeared on #{user.full_name_or_github_name}'s blog. Read more at <a href=#{user.blog.url}>#{user.blog.title}</a>.</strong><br><br>"
+  end
+
   def blurb
     lines = (ActionController::Base.helpers.strip_tags(content)).split("\n")
     blurb = ""
