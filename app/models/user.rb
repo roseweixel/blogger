@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates :github_username, :presence => true, :uniqueness => true, length: { maximum: 50 }
   validates :first_name, length: { maximum: 50 }
   validates :last_name, length: { maximum: 50 }
-  validates :email, length: { in: 6..50 }
+  validates :email, length: { maximum: 50 }
 
   def self.find_or_create_from_auth_hash(auth)
     where(github_username: auth.info.nickname).first_or_initialize.tap do |user|
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def is_authorized?
-    client.organization_member?('flatiron-school', github_username) || client.organization_member?('learn-co-students', github_username)
+    client.organization_member?('flatiron-school', github_username) || client.organization_member?('learn-co-students', github_username) || client.organization_member?('learn-co-curriculum', github_username)
   end
 
   def is_admin?
