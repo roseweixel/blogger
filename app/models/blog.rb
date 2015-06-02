@@ -8,6 +8,13 @@ class Blog < ActiveRecord::Base
 
   after_create :set_title, :create_entries
 
+  after_create :clean_url
+
+  def clean_url
+    self.url = self.url.strip
+    self.save
+  end
+
   def set_title
     self.update(title: feed.title)
   end
@@ -43,7 +50,7 @@ class Blog < ActiveRecord::Base
   end
   
   def feed_url
-    Feedbag.find(url).first
+    Feedbag.find(url.strip).first
   end
 
   def feed
