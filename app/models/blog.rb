@@ -44,6 +44,7 @@ class Blog < ActiveRecord::Base
         end
         p.content = entry.content
         p.summary = entry.summary
+        p.blog_id = id
         p.save
       end
     end
