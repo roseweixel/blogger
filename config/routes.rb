@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
 
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  
   get 'logout' => 'sessions#destroy'
 
   get 'publish_post' => 'posts#publish_post'
