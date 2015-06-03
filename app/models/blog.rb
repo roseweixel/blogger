@@ -51,6 +51,7 @@ class Blog < ActiveRecord::Base
   end
   
   def feed_url
+    binding.pry
     Feedbag.find(url.strip).first
   end
 

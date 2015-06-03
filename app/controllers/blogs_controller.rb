@@ -11,7 +11,7 @@ class BlogsController < ApplicationController
     rescue
       flash[:alert] = "Sorry, something went wrong."
     end
-    flash[:alert] = "The feed for this blog could not be parsed." if @blog.feed.empty?
+    flash[:alert] = "The feed for this blog could not be parsed." if @blog.feed == {}
     redirect_to(:back)
   end
 
