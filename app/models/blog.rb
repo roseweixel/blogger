@@ -15,7 +15,7 @@ class Blog < ActiveRecord::Base
   end
 
   def set_title
-    self.update(title: feed.title) if !feed.empty?
+    self.update(title: feed.title) if !feed == {}
   end
 
   def url_is_valid
