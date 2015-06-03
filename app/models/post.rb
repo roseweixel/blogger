@@ -2,7 +2,11 @@ class Post < ActiveRecord::Base
   belongs_to :blog
   delegate :user, to: :blog
   validates_uniqueness_of :url
-  validates_presence_of :url, :title, :content
+  validates_presence_of :url, :title
+
+  def content_or_summary
+    content || summary
+  end
 
   def slugified_title
     title.gsub(" ", "-").downcase.gsub(/(?!-)\W/, "")
@@ -21,7 +25,7 @@ class Post < ActiveRecord::Base
   end
 
   def blurb
-    lines = (ActionController::Base.helpers.strip_tags(content)).split("\n")
+    lines = (ActionController::Base.helpers.strip_tags(content_or_summary)).split("\n")
     blurb = ""
     n = 0
     until blurb.length >= 200 || !lines[n]

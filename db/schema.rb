@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527175701) do
+ActiveRecord::Schema.define(version: 20150603145745) do
 
   create_table "blog_assignments", force: :cascade do |t|
     t.integer  "user_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150527175701) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.text     "content"
+    t.text     "summary"
   end
 
   create_table "schedules", force: :cascade do |t|

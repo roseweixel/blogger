@@ -34,7 +34,7 @@ class Blog < ActiveRecord::Base
 
   def create_entries
     entries.each do |entry|
-      posts.create.tap do |p|
+      Post.where(url: entry.url).first_or_initialize.tap do |p|
         p.title = entry.title
         p.published_date = entry.published
         if entry.url.start_with?("/")
@@ -43,6 +43,7 @@ class Blog < ActiveRecord::Base
           p.url = entry.url
         end
         p.content = entry.content
+        p.summary = entry.summary
         p.save
       end
     end
