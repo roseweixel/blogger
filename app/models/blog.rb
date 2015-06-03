@@ -6,9 +6,18 @@ class Blog < ActiveRecord::Base
 
   validate :url_is_valid
 
-  after_create :set_title, :create_entries
+  after_create :set_title, :set_feed_url, :create_entries
 
   before_save :clean_url
+
+  NULL_ATTRS = %w( feed_url )
+  before_save :nil_if_blank
+
+  def reset
+    posts.clear
+    set_feed_url
+    set_title
+  end
 
   def clean_url
     self.url = self.url.strip
@@ -16,6 +25,10 @@ class Blog < ActiveRecord::Base
 
   def set_title
     self.update(title: feed.title) if feed != {}
+  end
+
+  def set_feed_url
+    self.update(feed_url: Feedbag.find(url.strip).first)
   end
 
   def url_is_valid
@@ -50,12 +63,12 @@ class Blog < ActiveRecord::Base
     end
   end
   
-  def feed_url
-    Feedbag.find(url.strip).first
+  def url_for_feed
+    feed_url || Feedbag.find(url.strip).first
   end
 
   def feed
-    Feedjira::Feed.fetch_and_parse(feed_url)
+    Feedjira::Feed.fetch_and_parse(url_for_feed)
   end
 
   def latest_entry
@@ -81,4 +94,10 @@ class Blog < ActiveRecord::Base
   def posts_on_or_before_date(date)
     posts.select { |post| post.published_date <= date }
   end
+
+  private
+
+    def nil_if_blank
+      NULL_ATTRS.each { |attr| self[attr] = nil if self[attr].blank? }
+    end
 end

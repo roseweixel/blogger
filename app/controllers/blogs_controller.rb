@@ -11,7 +11,7 @@ class BlogsController < ApplicationController
     rescue
       flash[:alert] = "Sorry, something went wrong."
     end
-    flash[:alert] = "The feed for this blog could not be parsed." if @blog.feed == {}
+    flash[:alert] = "The feed for this blog could not be parsed. Please enter the feed url on #{@blog.user.full_name_or_github_name}'s profile page." if @blog.feed == {}
     redirect_to(:back)
   end
 
@@ -27,17 +27,26 @@ class BlogsController < ApplicationController
   def update
     if @blog.update(blog_params)
       flash[:success] = "Blog successfully updated!"
-      redirect_to_from_uri
+      if session[:from_uri]
+        redirect_to_from_uri
+      else
+        redirect_to(:back)
+      end
     else
       flash[:alert] = @blog.errors.full_messages.to_sentence
       redirect_to(:back)
     end
   end
 
+  def reset
+    @blog.reset
+    redirect_to(:back)
+  end
+
   private
 
     def blog_params
-      params.require(:blog).permit(:url, :user_id)
+      params.require(:blog).permit(:url, :user_id, :feed_url)
     end
 
     def set_blog

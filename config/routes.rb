@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   get 'get_new_posts_for_user' => 'users#get_new_posts'
 
+  patch 'blogs/:id/reset' => 'blogs#reset', as: 'reset_blog'
+
   post 'set_blog_rotation' => 'schedules#set_blog_rotation'
 
   match 'login', to: redirect('/auth/github'), via: [:get, :post]
