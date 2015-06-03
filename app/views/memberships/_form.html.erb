@@ -1,5 +1,5 @@
 <%= form_for Membership.new, html: {class: "form-inline"} do |f| %>
-  <%= f.collection_select :user_id, User.all, :id, :full_name_or_github_name, {:prompt=> "Select existing user"}, {class: 'form-control'} %>
+  <%= f.collection_select :user_id, User.all.order("COALESCE(NULLIF(lower(last_name), ''), lower(github_username))"), :id, :full_name_or_github_name, {:prompt=> "Select existing user"}, {class: 'form-control'} %>
   <%= f.hidden_field :cohort_id, value: cohort.id %>
   <%= f.submit class: 'form-control' %>
 <% end %>
