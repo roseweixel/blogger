@@ -39,7 +39,7 @@ class Blog < ActiveRecord::Base
   end
 
   def feed_url_is_valid
-    if feed_url && !feed_url.start_with?("http://") && !feed_url.start_with?("https://")
+    if feed_url && !feed_url.empty? && !feed_url.start_with?("http://") && !feed_url.start_with?("https://")
       errors.add(:feed_url, "You must enter the full feed url starting with http")
     end
   end
