@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "admin@flatironblogs.com"
+  default from: "no-reply@flatironblogger.com"
   layout 'mailer'
 end
