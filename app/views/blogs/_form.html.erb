@@ -6,9 +6,9 @@
   </div>
   <%= f.label :url, 'Blog url:' %>
   <%= f.text_field :url, placeholder: 'full url including http', pattern:'^htt(p|ps):\/\/.+', class: 'form-control' %>
-  <%= f.label :url, 'Feed url:' %>
 
   <% if blog.persisted? && !blog.feed_url %>
+    <%= f.label :url, 'Feed url:' %>
     <%= f.text_field :feed_url, placeholder: 'full url including http', pattern: '^htt(p|ps):\/\/.+', class: "form-control" %>
   <% end %>
   
