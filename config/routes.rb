@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   match 'login', to: redirect('/auth/github'), via: [:get, :post]
 
-  get '/auth/:provider/callback', to: 'sessions#create'
+  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   
