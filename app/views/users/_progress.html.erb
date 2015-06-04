@@ -1,6 +1,6 @@
 <h3>Progress</h3>
 <div class="progress">
   <div class="progress-bar" role="progressbar" aria-valuenow="<%= @user.percent_blog_assignments_completed(schedule) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @user.percent_blog_assignments_completed(schedule) %>%;">
-    <%= @user.percent_blog_assignments_completed(schedule).round(2) %>%
+    <%= @user.percent_blog_assignments_completed(schedule).round %>%
   </div>
 </div>
