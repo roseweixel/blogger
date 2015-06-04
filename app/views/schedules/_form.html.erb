@@ -5,22 +5,22 @@
       <%= link_to 'Back', :back, class: 'btn btn-default' %>
     </div>
     <%= f.label :name, 'Schedule Name' %>
-    <%= f.text_field :name, class: "form-control" %>
+    <%= f.text_field :name, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
     <%= f.label :start_date %>
-    <%= f.date_field :start_date, class: "form-control" %>
+    <%= f.date_field :start_date, class: "form-control", required: true %>
   </div>
   
   <div class="form-group">
     <%= f.label :end_date %>
-    <%= f.date_field :end_date, class: "form-control" %>
+    <%= f.date_field :end_date, class: "form-control", required: true %>
   </div>
 
   <div class="form-group">
     <%= f.label :frequency %>:
-    each person should blog once every <%= f.number_field :frequency, class: "form-control small-field inline" %> days
+    each person should blog once every <%= f.number_field :frequency, class: "form-control small-field inline", required: true %> school days (for example, enter 5 if they should blog once per week)
   </div>
 
   <% if @schedule.persisted? %>

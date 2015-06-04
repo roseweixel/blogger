@@ -40,11 +40,11 @@ class Schedule < ActiveRecord::Base
   end
 
   def posts_per_blogger
-    weekdays_that_arent_holidays.count / frequency
+    (weekdays_that_arent_holidays.count / frequency)
   end
 
   def bloggers_per_day
-    (posts_per_blogger * cohort.users.count) / weekdays_that_arent_holidays.count
+    ((posts_per_blogger * cohort.users.count) / weekdays_that_arent_holidays.count) + 1
   end
 
   def leftover_posts
