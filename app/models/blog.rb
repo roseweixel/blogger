@@ -5,6 +5,7 @@ class Blog < ActiveRecord::Base
   validates :url, :presence => true, :uniqueness => true
 
   validate :url_is_valid
+  validate :feed_url_is_valid
 
   after_create :set_title, :set_feed_url, :create_entries
 
@@ -34,6 +35,12 @@ class Blog < ActiveRecord::Base
   def url_is_valid
     if !url.start_with?("http://") && !url.start_with?("https://")
       errors.add(:url, "You must enter the full blog url starting with http")
+    end
+  end
+
+  def feed_url_is_valid
+    if feed_url && !feed_url.start_with?("http://") && !feed_url.start_with?("https://")
+      errors.add(:feed_url, "You must enter the full feed url starting with http")
     end
   end
 

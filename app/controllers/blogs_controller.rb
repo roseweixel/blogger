@@ -6,12 +6,13 @@ class BlogsController < ApplicationController
   end
 
   def create
-    begin
-      @blog = Blog.create(blog_params)
-    rescue
-      flash[:alert] = "Sorry, something went wrong."
+    @blog = Blog.new(blog_params)
+    if @blog.save
+      flash[:success] = "Blog successfully created!"
+      flash[:alert] = "The feed for this blog could not be parsed. Please enter the feed url on #{@blog.user.full_name_or_github_name}'s profile page." if @blog.feed == {}
+    else
+      flash[:alert] = @blog.errors.full_messages.to_sentence
     end
-    flash[:alert] = "The feed for this blog could not be parsed. Please enter the feed url on #{@blog.user.full_name_or_github_name}'s profile page." if @blog.feed == {}
     redirect_to(:back)
   end
 
