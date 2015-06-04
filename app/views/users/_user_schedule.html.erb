@@ -10,7 +10,7 @@
   </div>
 
   <ul>
-  <% @user.blog_assignments(schedule).each do |blog_assignment| %>
+  <% @user.blog_assignments_for_schedule(schedule).each do |blog_assignment| %>
     <p class="large-font">
       <%= render 'schedules/greenlight', blog_assignment: blog_assignment %>
       <%= blog_assignment.due_date.strftime("%A, %m/%d/%Y") %>: 

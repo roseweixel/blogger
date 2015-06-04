@@ -40,7 +40,7 @@ class SchedulesController < ApplicationController
   end
 
   def generate_blog_rotation
-    @schedule.cohort.blog_assignments.all.destroy_all
+    @schedule.blog_assignments.all.destroy_all
     @priority = params[:priority]
 
     if @priority == "adhere to specified frequency"

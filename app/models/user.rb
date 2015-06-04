@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   end
 
   def percent_blog_assignments_completed(schedule)
-    (completed_blog_assignments(schedule).count.to_f / blog_assignments.count) * 100
+    (completed_blog_assignments(schedule).count.to_f / blog_assignments_for_schedule(schedule).count) * 100
   end
 
   def next_valid_day(previous_day, days_array, frequency)
@@ -89,9 +89,9 @@ class User < ActiveRecord::Base
     entries = blog.posts_after_date(last_assignment.due_date)
   end
 
-  def blog_posts_written_since_previous_assignment(date)
+  def blog_posts_written_since_previous_assignment(date, schedule)
     if blog
-      past_assignments = blog_assignments.where("due_date < ?", date)
+      past_assignments = blog_assignments_for_schedule(schedule).where("due_date < ?", date)
       last_assignment = past_assignments.order('due_date DESC').first
       last_assignment ? blog.posts_for_range(last_assignment.due_date, date) : blog.posts_on_or_before_date(date)
     else
