@@ -26,7 +26,10 @@ class BlogsController < ApplicationController
   end
 
   def update
+    old_url = @blog.url
     if @blog.update(blog_params)
+      # if @blog.url has changed, clear the old title and posts and fetch the new ones
+      @blog.reset_if_url_changed(old_url)
       flash[:success] = "Blog successfully updated!"
       if session[:from_uri]
         redirect_to_from_uri

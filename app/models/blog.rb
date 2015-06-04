@@ -18,6 +18,13 @@ class Blog < ActiveRecord::Base
     posts.clear
     set_feed_url
     set_title
+    create_entries
+  end
+
+  def reset_if_url_changed(old_url)
+    if old_url && old_url != url
+      reset
+    end
   end
 
   def clean_url
