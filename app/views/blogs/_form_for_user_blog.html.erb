@@ -1,0 +1,5 @@
+<%= form_for blog, :html => {:class => 'form-inline inline'} do |f| %>
+  <%= f.text_field :url, placeholder: 'enter full blog url', pattern:'^htt(p|ps):\/\/.+', class: 'form-control small-input' %>
+  <%= f.hidden_field :user_id, value: user_id %>
+  <%= f.submit 'create', class: 'form-control btn btn-default btn-xs' %>
+<% end %>

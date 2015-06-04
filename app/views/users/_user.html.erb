@@ -13,7 +13,9 @@
       <%= link_to 'reset', reset_blog_path(user.blog), method: 'patch', class: 'btn btn-default btn-xs', data: {confirm: "This will delete all associated posts, reset the title and feed url, and fetch new posts. Are you sure?"} %>
     </td>
   <% else %>
-    <td> - </td>
+    <td>
+      <%= render 'blogs/form_for_user_blog', blog: user.blogs.new, user_id: user.id %>
+    </td>
   <% end %>
 
   <% if user.blog && user.blog.posts.any? %>
