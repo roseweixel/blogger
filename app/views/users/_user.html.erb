@@ -10,7 +10,7 @@
       </div>
       <%= link_to 'edit', edit_blog_path(user.blog, cohort: cohort), class: 'btn btn-default btn-xs' %>
       <%= link_to 'delete', blog_path(user.blog), method: 'delete', class: 'btn btn-default btn-xs', data: {confirm: "Are you sure you want to delete this blog?"} %>
-      <%= link_to 'reset', reset_blog_path(blog), method: 'patch', class: 'btn btn-default btn-xs', data: {confirm: "This will delete all associated posts, reset the title and feed url, and fetch new posts. Are you sure?"} %>
+      <%= link_to 'reset', reset_blog_path(user.blog), method: 'patch', class: 'btn btn-default btn-xs', data: {confirm: "This will delete all associated posts, reset the title and feed url, and fetch new posts. Are you sure?"} %>
     </td>
   <% else %>
     <td> - </td>
