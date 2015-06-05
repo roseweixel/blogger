@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, except: [:new, :create]
+  before_action :require_admin_status, except: [:show]
   
   def show
   end
