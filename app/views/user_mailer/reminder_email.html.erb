@@ -5,11 +5,12 @@
   </head>
   <body>
   
-    <h4 class="extra-margin-bottom">
+    <h4>
       Hi, <%= @user.first_name_or_github_name %>! Don't forget you're presenting a blog post tomorrow.
     </h4>
+    <br>
 
-    <div class="row extra-margin-bottom">
+    <div class="row">
       Your upcoming blog posts:
       <ul>
         <% @user.remaining_blog_assignments.each do |blog_assignment| %>
@@ -19,13 +20,19 @@
         <% end %>
       </ul>
     </div>
+    <br>
 
-    <div class="row extra-margin-bottom">
-    Happy Blogging!
+    <div class="row">
+      Log in to <a href="https://flatiron-blogger.herokuapp.com">Flatiron Blogger</a> to see your schedule and progress, add or change your blog url, and check out the magazine to see what other Flatirons have written about!
     </div>
     <br>
 
-    <div class="row extra-margin-bottom">
+    <div class="row">
+      Happy Blogging!
+    </div>
+    <br>
+
+    <div class="row">
       // &lt;3,
     </div>
     <br>
