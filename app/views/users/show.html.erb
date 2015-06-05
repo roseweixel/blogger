@@ -3,11 +3,20 @@
     <button type="button" class="close" data-dismiss="alert">×</button>
     <h4>Your blog has no feed url!</h4>
     <div class="panel-body">
+      <p>
+      This could be because your blog was not set up yet. When your blog is set up, click here to set the feed url:
+
+      <%= link_to 'reset', reset_blog_path(@user.blog), method: 'patch', class: 'btn btn-default btn-sm', data: {confirm: "This will delete all associated posts, reset the title and feed url, and fetch new posts. Are you sure?"} %>
+      </p>
+
+      <p>
+      If your blog is already set up but the 'reset' button did not get the feed url, you can enter it manually here:
+
       <%= form_for @user.blog, html: {class: 'form-inline'} do |f| %>
-        <%= f.label :feed_url, 'Please enter your feed url here:' %>
         <%= f.text_field :feed_url, placeholder: 'full url including http', pattern: '^htt(p|ps):\/\/.+', class: "form-control" %> 
         <%= f.submit "Submit", class: "btn btn-default btn-sm" %>
       <% end %>
+      </p>
     </div>
   </div>
 <% end %>
