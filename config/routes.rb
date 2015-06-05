@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :blogs
 
+  get 'posts/filter' => 'posts#filter'
+
   resources :posts
 
   resources :users
@@ -42,4 +44,5 @@ Rails.application.routes.draw do
   get 'publish_posts' => 'posts#publish_posts'
 
   post 'set_default_holidays' => 'holidays#set_default_holidays'
+
 end

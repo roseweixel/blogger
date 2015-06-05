@@ -12,6 +12,17 @@ $(function(){
     $('.post-' + searchAttribute + ':contains(' + query + ')').closest('.post').show();
   });
 
+  $('#filter_options').change(function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var filterAttribute = $('#filter_options').val().match(/(?![View only posts by ])(.+)/)[0];
+    $.ajax({
+      url: 'posts/filter',
+      method: 'get',
+      data: { filter_attribute: filterAttribute }
+    });
+  });
+
   var images = $('img').add('iframe');
 
   $.each(images, function(index, image) {

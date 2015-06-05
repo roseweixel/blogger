@@ -1,5 +1,20 @@
 class PostsController < ApplicationController
-  before_action :require_admin_status, except: [:index]
+  before_action :require_admin_status, except: [:index, :filter]
+
+  def filter
+    filter_attribute = params[:filter_attribute]
+    @cohort = Cohort.find_by(name: filter_attribute)
+    if @cohort
+      @posts = Post.all.select { |p| p.user.cohort_ids.include?(@cohort.id) }
+    elsif filter_attribute == "Flatiron staff"
+      @posts = Post.all.select { |p| p.user.admin }
+    else
+      @posts = Post.all
+    end
+    respond_to do |f|
+      f.js
+    end
+  end
 
   def feature_post
     wpc = WordPress.client
