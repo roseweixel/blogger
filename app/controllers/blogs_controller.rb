@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, except: [:index, :create]
+  before_action :verify_admin_or_blog_owner, except: [:index]
 
   def index
     @blogs = Blog.all
@@ -55,5 +56,12 @@ class BlogsController < ApplicationController
 
     def set_blog
       @blog = Blog.find(params[:id])
+    end
+
+    def verify_admin_or_blog_owner
+      unless current_user.admin || (current_user == @blog.user)
+        flash[:alert] = "You must be admin or the owner of the blog in order to do this!"
+        redirect_to(:back)
+      end
     end
 end

@@ -1,7 +1,11 @@
 <p>
   <strong>
-  <%= render 'greenlight', blog_assignment: blog_assignment %> 
-  <%= link_to blog_assignment.user.full_name_or_github_name, user_path(blog_assignment.user) %>:
+    <%= render 'greenlight', blog_assignment: blog_assignment %>
+    <% if current_user.admin || blog_assignment.user == current_user %> 
+      <%= link_to blog_assignment.user.full_name_or_github_name, user_path(blog_assignment.user) %>:
+    <% else %>
+      <%= blog_assignment.user.full_name_or_github_name %>:
+    <% end  %>
   </strong>
 
   <%= blog_assignment.posts_since_previous.collect {|entry| (link_to entry.title, entry.url) + " (#{entry.published_date.strftime("%m/%d/%Y")})" }.to_sentence.html_safe %>
