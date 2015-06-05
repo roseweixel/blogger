@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   end
 
   def client
-    Octokit::Client.new(:access_token => access_token)
+    Octokit::Client.new(access_token: access_token, client_id: ENV['github_client_id'], client_secret: ENV['github_client_secret'])
   end
 
   def full_name_or_github_name
