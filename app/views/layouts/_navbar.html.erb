@@ -1,6 +1,12 @@
 <nav class="nav navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
       <%= link_to 'Flatiron Blogger', root_path, class: 'navbar-brand' %>
     </div>
     <div class="navbar-collapse collapse" id="navbar-main">
@@ -13,6 +19,31 @@
 
             <li><%= link_to 'Admin Dashboard', cohorts_path %></li>
             <li><%= link_to 'All Users', users_path %></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                Schedules 
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <% Cohort.all.each.with_index do |cohort, index| %>
+                  <li>
+                    <%= link_to cohort.name, cohort_path(cohort) %>
+                    <ul>
+                    <% cohort.schedules.each do |schedule| %>
+                      <li>
+                        <%= link_to schedule.name, cohort_schedule_path(cohort, schedule) %>
+                      </li>
+                    <% end %>
+                    </ul>
+                  </li>
+                  
+                  <% if index < Cohort.count - 1 %>
+                    <li class="divider"></li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </li>
 
           <% end %>
 
