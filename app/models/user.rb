@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   validates :email, length: { maximum: 50 }
 
   def self.find_or_create_from_auth_hash(auth)
-    binding.pry
     where(github_username: auth.info.nickname).first_or_initialize.tap do |user|
       user.access_token = auth.credentials.token
       user.github_username = auth.info.nickname
