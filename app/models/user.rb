@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   end
 
   def remaining_blog_assignments
-    blog_assignments.where("due_date > #{Date.today}")
+    blog_assignments.where("due_date > current_date")
   end
 
 end

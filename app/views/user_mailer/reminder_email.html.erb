@@ -6,7 +6,7 @@
   <body>
   
     <h4>
-      Hi, <%= @user.first_name_or_github_name %>! Don't forget you're presenting a blog post tomorrow.
+      Hi, <%= @user.first_name_or_github_name %>! Don't forget you're presenting a blog post tomorrow, <%= @user.remaining_blog_assignments.first.due_date.strftime("%A, %m/%d") %>. Be ready to present by 9am!
     </h4>
     <br>
 
