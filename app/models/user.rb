@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
     if blog
       past_assignments = blog_assignments_for_schedule(schedule).where("due_date < ?", date)
       last_assignment = past_assignments.order('due_date DESC').first
-      last_assignment ? blog.posts_for_range(last_assignment.due_date, date) : blog.posts_for_range(schedule.start_date - 7.days, date) 
+      last_assignment ? blog.posts_for_range(last_assignment.due_date + 12.hours, date) : blog.posts_for_range(schedule.start_date - 7.days, date) 
     else
       []
     end
