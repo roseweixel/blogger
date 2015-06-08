@@ -98,7 +98,7 @@ class Blog < ActiveRecord::Base
   end
 
   def posts_for_range(start_date, end_date)
-    posts.select { |post| post.published_date > (start_date.to_time + 12.hours) && post.published_date <= (end_date.to_time + 12.hours) }
+    posts.select { |post| post.published_date > (start_date.to_time + 12.hours) && post.published_date <= (end_date.to_time + 18.hours) }
   end
 
   def posts_after_date(date)
