@@ -9,13 +9,19 @@
     </div>
   </div>
 
-  <ul>
   <% @user.blog_assignments_for_schedule(schedule).each do |blog_assignment| %>
     <p class="large-font">
+      <% if current_user.admin %>
+        <a data-toggle="modal" href="#selectPostModal-<%= blog_assignment.id %>" class="btn btn-default btn-xs">choose post</a>
+      <% end %>
+      
       <%= render 'schedules/greenlight', blog_assignment: blog_assignment %>
       <%= blog_assignment.due_date.strftime("%A, %m/%d/%Y") %>: 
       <%= blog_assignment.posts_since_previous.collect {|entry| (link_to entry.title, entry.url) + " (#{entry.published_date.strftime("%m/%d/%Y")})" }.to_sentence.html_safe %>
+      
+      <% if current_user.admin %>
+        <%= render 'blog_assignments/select_post_for_blog_assignment_modal', blog_assignment: blog_assignment %>
+      <% end %>
     </p>
   <% end %>
-  </ul>
 </div>

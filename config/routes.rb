@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :blogs
 
+  resources :blog_assignments, only: [:update]
+
   get 'posts/filter' => 'posts#filter'
 
   resources :posts

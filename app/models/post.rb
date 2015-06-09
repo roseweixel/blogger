@@ -4,6 +4,10 @@ class Post < ActiveRecord::Base
   validates_uniqueness_of :url
   validates_presence_of :url, :title
 
+  def title_and_date
+    "#{title} - #{published_date.strftime("%m/%d/%Y")}"
+  end
+
   def content_or_summary
     content || summary
   end
