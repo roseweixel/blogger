@@ -15,7 +15,10 @@ $(function(){
   $('#filter_options').change(function(e){
     e.preventDefault();
     e.stopPropagation();
-    var filterAttribute = $('#filter_options').val().split(" ")[4];
+
+    var string = $('#filter_options').val().split(" ").reverse().join(" ")
+    var filterAttribute = string.match(/.+(?= by)/)[0].split(" ").reverse().join(" ")
+
     $.ajax({
       url: 'posts/filter',
       method: 'get',
