@@ -16,6 +16,7 @@ $(function(){
     e.preventDefault();
     e.stopPropagation();
     var filterAttribute = $('#filter_options').val().match(/(?![View only posts by ])(.+)/)[0];
+    debugger;
     $.ajax({
       url: 'posts/filter',
       method: 'get',
