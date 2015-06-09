@@ -16,8 +16,14 @@ $(function(){
     e.preventDefault();
     e.stopPropagation();
 
-    var string = $('#filter_options').val().split(" ").reverse().join(" ");
-    var filterAttribute = string.match(/.+(?= by)/)[0].split(" ").reverse().join(" ");
+    var filterAttribute;
+
+    if ($('#filter_options').val() === "Show all") {
+      filterAttribute = $('#filter_options').val();
+    } else {
+      var string = $('#filter_options').val().split(" ").reverse().join(" ");
+      filterAttribute = string.match(/.+(?= by)/)[0].split(" ").reverse().join(" ");
+    }
 
     $.ajax({
       url: 'posts/filter',
