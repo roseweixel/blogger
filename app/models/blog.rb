@@ -94,11 +94,7 @@ class Blog < ActiveRecord::Base
   end
 
   def entries
-    begin
-      (feed && feed != {}) ? feed.entries : []
-    rescue
-      []
-    end
+    (feed && feed != {}) ? feed.entries : []
   end
 
   def posts_for_range(start_date, end_date)
