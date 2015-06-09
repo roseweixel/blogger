@@ -17,11 +17,10 @@ class BlogAssignment < ActiveRecord::Base
   end
 
   def posts_since_previous
-    posts = user.blog_posts_written_since_previous_assignment(due_date, schedule)
-    if posts.empty?
-      post ? [post] : posts
+    if post
+      [post]
     else
-      posts
+      user.blog_posts_written_since_previous_assignment(due_date, schedule)
     end
   end
 
