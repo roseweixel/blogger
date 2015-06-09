@@ -13,7 +13,7 @@ class BlogAssignment < ActiveRecord::Base
   end
 
   def completed?
-    user.blog_posts_written_since_previous_assignment(due_date, schedule).find { |post| post.content_or_summary.length > 140 } || post
+    user.blog_posts_written_since_previous_assignment(due_date, schedule).find { |post| post.content_or_summary.length > 140 && !post.blog_assignment } || post
   end
 
   def posts_since_previous
