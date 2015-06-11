@@ -94,7 +94,8 @@ class Blog < ActiveRecord::Base
   end
 
   def entries
-    (feed && (feed.class == Feedjira::Parser::Atom || feed.class == Feedjira::Parser::RSS)) ? feed.entries : []
+
+    (feed && feed.class.to_s.start_with?("Feedjira::Parser")) ? feed.entries : []
   end
 
   def posts_for_range(start_date, end_date)
