@@ -94,7 +94,6 @@ class Blog < ActiveRecord::Base
   end
 
   def entries
-
     (feed && feed.class.to_s.start_with?("Feedjira::Parser")) ? feed.entries : []
   end
 
