@@ -59,7 +59,7 @@ class BlogsController < ApplicationController
     end
 
     def verify_admin_or_blog_owner
-      unless current_user.admin || (current_user == @blog.user)
+      unless current_user.admin || (@blog && (current_user == @blog.user)) || blog_params[:user_id].to_i == current_user.id
         flash[:alert] = "You must be admin or the owner of the blog in order to do this!"
         redirect_to(:back)
       end
