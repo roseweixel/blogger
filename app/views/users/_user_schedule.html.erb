@@ -8,8 +8,7 @@
       <%= render 'progress', schedule: schedule %>
     </div>
   </div>
-
-  <% @user.blog_assignments_for_schedule(schedule).each do |blog_assignment| %>
+  <% @user.blog_assignments_for_schedule(schedule).order(:due_date).each do |blog_assignment| %>
     <p class="large-font">
       <% if current_user.admin %>
         <a data-toggle="modal" href="#selectPostModal-<%= blog_assignment.id %>" class="btn btn-default btn-xs">choose post</a>
