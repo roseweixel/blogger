@@ -18,7 +18,11 @@ class BlogsController < ApplicationController
   end
 
   def destroy
-    @blog.destroy
+    if @blog.destroy
+      flash[:success] = "Blog successfully destroyed."
+    else
+      flash[:alert] = @blog.errors.full_messages.to_sentence
+    end
     redirect_to(:back)
   end
 
