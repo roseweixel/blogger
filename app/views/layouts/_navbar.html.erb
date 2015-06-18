@@ -31,9 +31,9 @@
                     <%= link_to cohort.name, cohort_path(cohort) %>
                     <ul>
                     <% cohort.schedules.each do |schedule| %>
-                      <li>
-                        <%= link_to schedule.name, cohort_schedule_path(cohort, schedule) %>
-                      </li>
+                      <%= link_to cohort_schedule_path(cohort, schedule) do %>
+                        <li><%= schedule.name %></li>
+                      <% end %>
                     <% end %>
                     </ul>
                   </li>
