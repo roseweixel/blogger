@@ -22,7 +22,7 @@ class Post < ActiveRecord::Base
   end
 
   def content_for_wordpress
-    original_credit_for_wordpress + content
+    original_credit_for_wordpress + content_or_summary
   end
 
   def original_credit_for_wordpress
