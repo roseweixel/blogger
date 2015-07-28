@@ -25,20 +25,41 @@ class Post < ActiveRecord::Base
     original_credit_for_wordpress + content_or_summary
   end
 
+  # for pesky medium blogs with no content in rss feed
+  def create_content_from_nokogiri
+    if content == nil && url.include?('medium.com')
+      doc = Nokogiri::HTML(open(url))
+      nodes = doc.search('.section-inner')
+      new_content = ""
+
+      nodes.each do |node|
+        new_content << node.to_s
+      end
+
+      update(content: new_content)
+    end
+  end
+
   def original_credit_for_wordpress
     "<strong>This post originally appeared on #{user.full_name_or_github_name}'s blog. Read more at <a href=#{user.blog.url}>#{user.blog.title}</a>.</strong><br><br>"
   end
 
+  def sanitized_content
+    ActionController::Base.helpers.strip_tags(content_or_summary)
+  end
+
   def blurb
-    lines = (ActionController::Base.helpers.strip_tags(content_or_summary)).split("\n")
-    blurb = ""
-    n = 0
-    until blurb.length >= 200 || !lines[n]
-      blurb << lines[n] if !lines[n].match(/&lt/)
-      blurb << "\n"
-      n += 1
+    if sanitized_content
+      lines = sanitized_content.split("\n")
+      blurb = ""
+      n = 0
+      until blurb.length >= 200 || !lines[n]
+        blurb << lines[n] if !lines[n].match(/&lt/)
+        blurb << "\n"
+        n += 1
+      end
+      blurb.gsub(/<img.+\>/, "")
     end
-    blurb.gsub(/<img.+\>/, "")
   end
 
 end
