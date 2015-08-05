@@ -5,6 +5,14 @@ class Post < ActiveRecord::Base
   validates_uniqueness_of :url
   validates_presence_of :url, :title
 
+  def self.posts_for_cohort(cohort)
+    Post.all.select { |p| p.user.cohort_ids.include?(cohort.id) }
+  end
+
+  def self.staff_posts
+    Post.all.select { |p| p.user.admin }
+  end
+
   def title_and_date
     "#{title} - #{published_date.strftime("%m/%d/%Y")}"
   end

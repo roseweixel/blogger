@@ -3,14 +3,10 @@ class PostsController < ApplicationController
 
   def filter
     filter_attribute = params[:filter_attribute]
+    
     @cohort = Cohort.find_by(name: filter_attribute)
-    if @cohort
-      @posts = Post.all.select { |p| p.user.cohort_ids.include?(@cohort.id) }
-    elsif filter_attribute == "Flatiron staff"
-      @posts = Post.all.select { |p| p.user.admin }
-    else
-      @posts = Post.all
-    end
+    @posts = get_filtered_posts(filter_attribute)
+
     respond_to do |f|
       f.js
     end
@@ -45,6 +41,20 @@ class PostsController < ApplicationController
   end
 
   private
+
+    def staff?(filter_attribute)
+      filter_attribute == "Flatiron staff"
+    end
+
+    def get_filtered_posts(filter_attribute)
+      if @cohort
+        Post.posts_for_cohort(@cohort)
+      elsif staff?(filter_attribute)
+        Post.staff_posts
+      else
+        Post.all
+      end
+    end
 
     def publish_post_to_wordpress
       @wpc.post('posts/new', :body => {
