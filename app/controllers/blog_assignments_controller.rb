@@ -1,5 +1,5 @@
 class BlogAssignmentsController < ApplicationController
-  before_action :require_admin_status
+  # before_action :require_admin_status
   
   def update
     @blog_assignment = BlogAssignment.find(params[:id])

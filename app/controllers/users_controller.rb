@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, except: [:create, :index]
-  before_action :require_admin_status, only: [:index, :destroy]
+  # before_action :require_admin_status, only: [:index, :destroy]
   before_action :verify_identity
   
   def create

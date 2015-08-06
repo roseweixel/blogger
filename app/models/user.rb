@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validates :email, length: { maximum: 50 }
 
   def self.find_or_create_from_auth_hash(auth)
+    binding.pry
     where(github_username: auth.info.nickname).first_or_initialize.tap do |user|
       user.access_token = auth.credentials.token
       user.github_username = auth.info.nickname
@@ -19,18 +20,18 @@ class User < ActiveRecord::Base
       user.uid = auth.uid
       user.email = auth.info.email
       user.image = auth.info.image
-      user.admin = user.is_admin?
+      # user.admin = user.is_admin?
       user.save
     end
   end
 
-  def is_authorized?
-    client.organization_member?('flatiron-school', github_username) || client.organization_member?('learn-co-students', github_username) || client.organization_member?('learn-co-curriculum', github_username)
-  end
+  # def is_authorized?
+  #   client.organization_member?('flatiron-school', github_username) || client.organization_member?('learn-co-students', github_username) || client.organization_member?('learn-co-curriculum', github_username)
+  # end
 
-  def is_admin?
-    client.organization_member?('learn-co-curriculum', github_username)
-  end
+  # def is_admin?
+  #   client.organization_member?('learn-co-curriculum', github_username)
+  # end
 
   def name
     if first_name && last_name

@@ -24,8 +24,11 @@
 <div class="row extra-margin-bottom">
   <div class="col-md-12">
     <h1>
-      <%= @user.full_name_or_github_name %> 
+      <%= @user.full_name_or_github_name %>
       <%= link_to 'Get New Posts', get_new_posts_for_user_path(id: @user.id), class: 'btn btn-success pull-right' %>
+      <% if @user == current_user %>
+        <%= link_to 'Edit Your Profile', edit_user_path(@user), class: 'btn btn-info pull-right extra-margin-right' %>
+      <% end %>
     </h1>
   </div>
 </div>

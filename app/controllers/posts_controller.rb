@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :require_admin_status, except: [:index, :filter]
+  # before_action :require_admin_status, except: [:index, :filter]
 
   def filter
     filter_attribute = params[:filter_attribute]
@@ -47,13 +47,7 @@ class PostsController < ApplicationController
     end
 
     def get_filtered_posts(filter_attribute)
-      if @cohort
-        Post.posts_for_cohort(@cohort)
-      elsif staff?(filter_attribute)
-        Post.staff_posts
-      else
-        Post.all
-      end
+      @cohort ? Post.posts_for_cohort(@cohort) : Post.all
     end
 
     def publish_post_to_wordpress
