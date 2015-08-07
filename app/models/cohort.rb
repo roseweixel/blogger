@@ -1,5 +1,3 @@
-require 'csv'
-
 class Cohort < ActiveRecord::Base
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
@@ -13,33 +11,14 @@ class Cohort < ActiveRecord::Base
   
   validates :name, :presence => true, :uniqueness => true, length: { maximum: 50 }
   
-  after_save :create_members
+  after_save :create_members, :if => :has_roster_csv_path?
 
-  def create_members
-    return if !roster_csv.path
-    
+  def create_members    
     memberships.clear
-    
-    csv_array = CSV.foreach(roster_csv.path)
-    @github_username_index = csv_array.first.index('github_username')
-    
-    csv_array.each_with_index do |row, index|
-      if index == 0
-        @member_attributes_array = row
-      else
-        create_or_update_user_from_csv(row)
-        Membership.create(user_id: @member.id, cohort_id: id)
-      end
-    end
+    CohortMaker.new(self, :github_username)
   end
 
-  def create_or_update_user_from_csv(row)
-    @member = User.where(github_username: row[@github_username_index]).first_or_initialize.tap do |user|
-      @member_attributes_array.compact.each_with_index do |attribute, index|
-        user.send(attribute + '=', row[index])
-      end
-      user.save
-    end
+  def has_roster_csv_path?
+    !!roster_csv.path
   end
-
 end
