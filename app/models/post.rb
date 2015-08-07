@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   has_one :blog_assignment
   delegate :user, to: :blog
   validates_uniqueness_of :url
-  validates_presence_of :url, :title
+  validates_presence_of :url, :title, :blog
 
   def self.posts_for_cohort(cohort)
     Post.all.select { |p| p.user.cohort_ids.include?(cohort.id) }
