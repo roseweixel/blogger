@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  # before_action :require_admin_status, except: [:index, :filter]
 
   def filter
     filter_attribute = params[:filter_attribute]

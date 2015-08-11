@@ -1,6 +1,5 @@
 class CohortsController < ApplicationController
   before_action :set_cohort, except: [:create, :show, :index]
-  # before_action :require_admin_status
 
   def create
     @cohort = Cohort.new(cohort_params)
