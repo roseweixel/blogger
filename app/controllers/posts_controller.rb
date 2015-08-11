@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
     publish_post_to_wordpress
 
-    flash[:success] = "#{@post.title} was successfully published to the Flatiron School blog with draft status."
+    flash[:success] = "#{@post.title} was successfully published to your WordPress blog with draft status."
     redirect_to cohorts_path
   end
 
@@ -40,10 +40,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-    def staff?(filter_attribute)
-      filter_attribute == "Flatiron staff"
-    end
 
     def get_filtered_posts(filter_attribute)
       @cohort ? Post.posts_for_cohort(@cohort) : Post.all

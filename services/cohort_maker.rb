@@ -9,10 +9,10 @@ class CohortMaker
     path = get_path
     verify_path(path)
 
-    @csv_array = CSV.foreach(path)
+    @csv_enumerator = CSV.foreach(path)
     @primary_attribute = primary_attribute
-    @primary_attribute_index = @csv_array.first.index(primary_attribute.to_s)
-    @member_attributes_array = @csv_array.first
+    @primary_attribute_index = @csv_enumerator.first.index(primary_attribute.to_s)
+    @member_attributes_array = @csv_enumerator.first
 
     create_memberships_from_csv
   end
@@ -30,9 +30,11 @@ class CohortMaker
   end
 
   def create_memberships_from_csv
-    @csv_array.each.with_index(1) do |row, index|
-      member = create_or_update_user_from_csv(row)
-      Membership.create(user_id: member.id, cohort_id: cohort.id)
+    @csv_enumerator.each do |row|
+      unless row == @member_attributes_array
+        member = create_or_update_user_from_csv(row)
+        Membership.create(user_id: member.id, cohort_id: cohort.id)
+      end
     end
   end
 

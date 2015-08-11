@@ -1,5 +1,5 @@
 <div class="jumbotron text-center">
-  <h1>Welcome to Flatiron Blogger</h1>
+  <h1>Welcome to Blogger</h1>
   <% if current_user %>
     <%= link_to 'Go To Your Profile', user_path(current_user), class: "btn btn-success btn-large" %>
     <%= link_to 'Go To The Admin Dashboard', cohorts_path, class: "btn btn-success btn-large" if current_user.admin %> 

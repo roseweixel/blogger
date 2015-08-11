@@ -9,10 +9,6 @@ class Post < ActiveRecord::Base
     Post.all.select { |p| p.user.cohort_ids.include?(cohort.id) }
   end
 
-  def self.staff_posts
-    Post.all.select { |p| p.user.admin }
-  end
-
   def title_and_date
     "#{title} - #{published_date.strftime("%m/%d/%Y")}"
   end
